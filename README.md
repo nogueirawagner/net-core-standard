@@ -25,7 +25,7 @@ Precisa trabalhar com versões lado a lado, porém não terá suporte para algun
 mas dependendo do tipo de pacote, é importante avalir se tudo aquilo que vc precisa vai estar disponível em .net core. Caso contrário terá que esperar a biblioteca até migrar para o .net core.
 
 <strong> 
-Projeto utilizado neste projeto é um .net core, editado para apontar para o netstandard 1.6; A única coisa que muda é o target.
+O tipo de projeto utilizado neste projeto é um .net core, editado para apontar para o netstandard 1.6; A única coisa que muda é o target.
 </strong>
 
 
