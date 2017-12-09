@@ -1,8 +1,9 @@
 using Core.Domain.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Linq;
 
-namespace Core.Infra.CC.Testes
+namespace Core.Testes
 {
   [TestClass]
   public class XEventoTestes
@@ -12,7 +13,10 @@ namespace Core.Infra.CC.Testes
     public void TesteNomeEventoInValido()
     {
       var evento = new Evento("No", "Curso", DateTime.Now, DateTime.Now, false, 40, true, "Wagner");
-      Assert.IsFalse(evento.EhValido());
+      evento.EhValido();
+      Assert.IsFalse(evento.ValidationResult.IsValid);
+      Assert.AreEqual(evento.ValidationResult.Errors.Count, 1);
+      Assert.AreEqual(evento.ValidationResult.Errors.First().ErrorMessage, "O nome deve conter entre 3 e 150 caracteres");
     }
 
     [TestMethod, TestCategory("Core"), TestProperty("Autor", "Wagner")]
@@ -20,8 +24,12 @@ namespace Core.Infra.CC.Testes
     public void TesteNomeValorInValido()
     {
       var evento = new Evento("No", "Curso", DateTime.Now, DateTime.Now, true, 40, true, "Wagner");
-      Assert.IsFalse(evento.EhValido());
-      Assert.AreEqual(evento.ErrosValidacao.Count, 2);
+      evento.EhValido();
+      Assert.IsFalse(evento.ValidationResult.IsValid);
+      Assert.AreEqual(evento.ValidationResult.Errors.Count, 2);
+      Assert.AreEqual(evento.ValidationResult.Errors.First(s => s.PropertyName == "Nome").ErrorMessage, "O nome deve conter entre 3 e 150 caracteres");
+      Assert.AreEqual(evento.ValidationResult.Errors.First(s => s.PropertyName == "Valor").ErrorMessage, "O valor deve ser zero para evento gratuito");
+
     }
 
     [TestMethod, TestCategory("Core"), TestProperty("Autor", "Wagner")]
@@ -29,7 +37,8 @@ namespace Core.Infra.CC.Testes
     public void TesteNomeEventoValido()
     {
       var evento = new Evento("Nome", "Curso", DateTime.Now, DateTime.Now, false, 40, true, "Wagner");
-      Assert.IsTrue(evento.EhValido());
+      evento.EhValido();
+      Assert.IsTrue(evento.ValidationResult.IsValid);
     }
   }
 }

@@ -38,8 +38,8 @@ namespace Core.Domain.Models
 
     public override bool EhValido()
     {
+      Validar();
       return ValidationResult.IsValid;
-
     }
 
     private void Validar()
@@ -56,7 +56,7 @@ namespace Core.Domain.Models
     {
       RuleFor(c => c.Nome)
         .NotEmpty().WithMessage("O nome do evento não pode ser vazio")
-        .Length(2, 150).WithMessage("O nome deve conter entre 3 e 150 caracteres");
+        .Length(3, 150).WithMessage("O nome deve conter entre 3 e 150 caracteres");
     }
 
     private void ValidarValor()
