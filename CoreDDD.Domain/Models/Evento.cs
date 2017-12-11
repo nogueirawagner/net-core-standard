@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Core.Domain.Models
 {
-  public class Evento : Entity<Evento>
+  public class Evento : XEntity<Evento>
   {
     public Evento(string pNome, string pDescricao, DateTime pDataInicio, DateTime pDataFim,
       bool pGratuito, decimal pValor, bool pOnline, string pNomeEmpresa)
@@ -32,9 +32,12 @@ namespace Core.Domain.Models
     public bool Online { get; private set; }
     public string NomeEmpresa { get; private set; }
     public Categoria Categoria { get; private set; }
+    public Guid? CategoriaId { get; private set; }
     public ICollection<Tag> Tags { get; private set; }
     public Endereco Endereco { get; private set; }
+    public Guid? EnderecoId { get; private set; }
     public Organizador Organizador { get; private set; }
+    public Guid OrganizadorId { get; private set; }
 
     public override bool EhValido()
     {

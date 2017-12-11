@@ -8,9 +8,9 @@ namespace Core.Domain.Core.Models
 {
   // Como AbstractValidator precisa de alguma classe.
   // Então Entity implementa um generico e esse generico é passado para o AbstractValidator onde esse generico fosse alguma classe que herdasse de Entity.
-  public abstract class Entity<T> : AbstractValidator<T> where T : Entity<T>
+  public abstract class XEntity<T> : AbstractValidator<T> where T : XEntity<T>
   {
-    public Entity()
+    public XEntity()
     {
       ValidationResult = new ValidationResult();
     }
@@ -21,14 +21,14 @@ namespace Core.Domain.Core.Models
 
     public override bool Equals(object obj)
     {
-      var compareTo = obj as Entity<T>;
+      var compareTo = obj as XEntity<T>;
       if (ReferenceEquals(this, compareTo)) return true;
       if (ReferenceEquals(null, compareTo)) return false;
 
       return Id.Equals(compareTo.Id);
     }
 
-    public static bool operator ==(Entity<T> a, Entity<T> b)
+    public static bool operator ==(XEntity<T> a, XEntity<T> b)
     {
       if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
         return true;
@@ -39,7 +39,7 @@ namespace Core.Domain.Core.Models
       return a.Equals(b);
     }
 
-    public static bool operator !=(Entity<T> a, Entity<T> b)
+    public static bool operator !=(XEntity<T> a, XEntity<T> b)
     {
       return !(a == b);
     }

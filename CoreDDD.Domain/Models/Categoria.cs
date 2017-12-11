@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Core.Domain.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Core.Domain.Models
 {
-    public class Categoria
-    {
-    }
+  public class Categoria : XEntity<Categoria>
+  {
+    // Um evento tem n categoria : Na tabela de eventos a mesma categoria está para vários eventos
+    public virtual ICollection<Evento> Eventos { get; set; }
+  }
 }
