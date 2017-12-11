@@ -9,5 +9,10 @@ namespace Core.Domain.Models
   {
     // Um evento tem n categoria : Na tabela de eventos a mesma categoria está para vários eventos
     public virtual ICollection<Evento> Eventos { get; set; }
+
+    public override bool EhValido()
+    {
+      throw new NotImplementedException();
+    }
   }
 }

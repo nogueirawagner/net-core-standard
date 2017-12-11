@@ -14,9 +14,17 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="1.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.1.4" />
+    <PackageReference Include="microsoft.Extensions.Configuration.FileExtensions" Version="1.1.0" />
+    <PackageReference Include="microsoft.Extensions.Configuration.Json" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CoreDDD.Domain\Core.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

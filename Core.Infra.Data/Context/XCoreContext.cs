@@ -1,8 +1,10 @@
 ﻿using Core.Domain.Models;
 using Core.Infra.Data.Context.ModelBuilders;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace Core.Infra.Data.Context
@@ -24,6 +26,17 @@ namespace Core.Infra.Data.Context
 
 
       base.OnModelCreating(modelBuilder);
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+      var config = new ConfigurationBuilder()
+        .SetBasePath(Directory.GetCurrentDirectory())
+        .AddJsonFile("appsettings.json")
+        .Build();
+
+      optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
+
     }
   }
 }
