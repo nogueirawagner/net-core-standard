@@ -24,7 +24,6 @@ namespace Core.Infra.Data.Context
       XOrganizadorModelBuilder.ModelBuilder(modelBuilder);
       XCategoriaModelBuilder.ModelBuilder(modelBuilder);
 
-
       base.OnModelCreating(modelBuilder);
     }
 

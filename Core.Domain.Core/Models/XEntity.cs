@@ -1,8 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Core.Domain.Core.Models
 {

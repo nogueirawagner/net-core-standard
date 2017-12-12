@@ -11,7 +11,7 @@ namespace Core.Infra.Data.Context.ModelBuilders
       mb.ToTable("Eventos");
 
       mb.Property(e => e.Nome)
-       .HasColumnType("varchar(150")
+       .HasColumnType("varchar(150)")
        .IsRequired();
 
       mb.Property(e => e.DescricaoCurta)
