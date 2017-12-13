@@ -1,5 +1,6 @@
 ﻿using Core.Domain.Core.Models;
 using System;
+using System.Collections.Generic;
 
 namespace Core.Domain.Models
 {
@@ -10,7 +11,7 @@ namespace Core.Domain.Models
       Id = pId;
     }
 
-    public Evento Evento { get; set; }
+    public ICollection<Evento> Eventos { get; set; }
     public Guid EventoId { get; set; }
 
     public override bool EhValido()

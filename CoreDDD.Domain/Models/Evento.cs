@@ -84,21 +84,17 @@ namespace Core.Domain.Models
       RuleFor(c => c.DataInicio)
         .LessThan(DateTime.Now)
         .WithMessage("A data início não deve ser menor que a data atual");
-
     }
 
     private void ValidarLocal()
     {
-      if (Online)
         RuleFor(c => c.Endereco)
           .Null().When(c => c.Online)
           .WithMessage("O evento não deve possuir um endereço se for online");
 
-      if (!Online)
         RuleFor(c => c.Endereco)
           .NotNull().When(c => !c.Online)
           .WithMessage("O evento deve possuir um endereço");
-
     }
 
     private void ValidarNomeEmpresa()

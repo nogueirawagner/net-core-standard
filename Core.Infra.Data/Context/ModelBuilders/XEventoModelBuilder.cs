@@ -41,7 +41,12 @@ namespace Core.Infra.Data.Context.ModelBuilders
         .WithMany(c => c.Eventos) // Categoria tem n eventos
         .HasForeignKey(e => e.CategoriaId) // FK categoriaId que pertence ao evento
         .IsRequired(false); // Não é um relacionamento requirido
-        
+
+      // Evento pode ter ou nao endereco
+      mb.HasOne(e => e.Endereco)
+        .WithMany(c => c.Eventos)
+        .HasForeignKey(e => e.EnderecoId)
+        .IsRequired(false);
     }
   }
 }
