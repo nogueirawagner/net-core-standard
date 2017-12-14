@@ -15,8 +15,6 @@ namespace Core.Infra.Data.Context
     public DbSet<Organizador> Organizadores { get; set; }
     public DbSet<Categoria> Categorias { get; set; }
     public DbSet<Endereco> Enderecos { get; set; }
-    public DbSet<Tag> Tags { get; set; }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
       XEventoModelBuilder.ModelBuilder(modelBuilder);

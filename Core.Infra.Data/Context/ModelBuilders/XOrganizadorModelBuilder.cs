@@ -10,6 +10,7 @@ namespace Core.Infra.Data.Context.ModelBuilders
       var mb = pModelBuilder.Entity<Organizador>();
       mb.ToTable("Organizadores");
 
+      mb.Ignore(e => e.Eventos);
       mb.Ignore(e => e.ValidationResult);
       mb.Ignore(e => e.CascadeMode);
 

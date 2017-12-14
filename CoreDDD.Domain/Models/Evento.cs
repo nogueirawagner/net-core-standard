@@ -33,7 +33,6 @@ namespace Core.Domain.Models
     public string NomeEmpresa { get; private set; }
     public Categoria Categoria { get; private set; }
     public Guid? CategoriaId { get; private set; }
-    public ICollection<Tag> Tags { get; private set; }
     public Endereco Endereco { get; private set; }
     public Guid? EnderecoId { get; private set; }
     public Organizador Organizador { get; private set; }

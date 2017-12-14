@@ -29,7 +29,9 @@ namespace Core.Infra.Data.Context.ModelBuilders
       .IsRequired();
 
       mb.Ignore(e => e.ValidationResult);
-      mb.Ignore(e => e.Tags);
+      mb.Ignore(e => e.Endereco);
+      mb.Ignore(e => e.Organizador);
+      mb.Ignore(e => e.Categoria);
       mb.Ignore(e => e.CascadeMode);
 
       mb.HasOne(e => e.Organizador) //Evento tem 1 organizador

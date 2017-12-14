@@ -11,6 +11,7 @@ namespace Core.Infra.Data.Context.ModelBuilders
 
       mb.ToTable("Enderecos");
 
+      mb.Ignore(e => e.Eventos);
       mb.Ignore(e => e.ValidationResult);
       mb.Ignore(e => e.CascadeMode);
 
