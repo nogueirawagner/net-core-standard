@@ -31,12 +31,15 @@ namespace Core.Domain.Models
     public decimal Valor { get; private set; }
     public bool Online { get; private set; }
     public string NomeEmpresa { get; private set; }
-    public Categoria Categoria { get; private set; }
-    public Guid? CategoriaId { get; private set; }
-    public Endereco Endereco { get; private set; }
-    public Guid? EnderecoId { get; private set; }
-    public Organizador Organizador { get; private set; }
-    public Guid OrganizadorId { get; private set; }
+
+    //public Categoria Categoria { get; private set; }
+    //public Guid? CategoriaId { get; private set; }
+
+    //public Endereco Endereco { get; private set; }
+    //public Guid? EnderecoId { get; private set; }
+
+    //public Organizador Organizador { get; private set; }
+    //public Guid OrganizadorId { get; private set; }
 
     public override bool EhValido()
     {
@@ -87,13 +90,13 @@ namespace Core.Domain.Models
 
     private void ValidarLocal()
     {
-        RuleFor(c => c.Endereco)
-          .Null().When(c => c.Online)
-          .WithMessage("O evento não deve possuir um endereço se for online");
+        //RuleFor(c => c.Endereco)
+        //  .Null().When(c => c.Online)
+        //  .WithMessage("O evento não deve possuir um endereço se for online");
 
-        RuleFor(c => c.Endereco)
-          .NotNull().When(c => !c.Online)
-          .WithMessage("O evento deve possuir um endereço");
+        //RuleFor(c => c.Endereco)
+        //  .NotNull().When(c => !c.Online)
+        //  .WithMessage("O evento deve possuir um endereço");
     }
 
     private void ValidarNomeEmpresa()
