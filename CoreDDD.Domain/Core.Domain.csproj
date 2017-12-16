@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Eventos\Commands\" />
     <Folder Include="Eventos\Events\" />
     <Folder Include="Eventos\Repository\" />
   </ItemGroup>

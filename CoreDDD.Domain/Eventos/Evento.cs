@@ -1,4 +1,5 @@
 ﻿using Core.Domain.Core.Models;
+using Core.Domain.Models.Organizadores;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
