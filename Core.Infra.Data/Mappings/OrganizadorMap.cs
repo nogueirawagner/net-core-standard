@@ -1,4 +1,5 @@
 ﻿using Core.Domain.Models;
+using Core.Domain.Models.Eventos;
 using Core.Infra.Data.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -24,7 +25,6 @@ namespace Core.Infra.Data.Mappings
         .HasMaxLength(11)
         .IsRequired();
 
-      builder.Ignore(e => e.Eventos);
       builder.Ignore(e => e.ValidationResult);
       builder.Ignore(e => e.CascadeMode);
     }

@@ -1,12 +1,9 @@
-﻿using Core.Domain.Models;
+﻿using Core.Domain.Models.Eventos;
 using Core.Infra.Data.Extensions;
 using Core.Infra.Data.Mappings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace Core.Infra.Data.Context
 {
@@ -33,7 +30,7 @@ namespace Core.Infra.Data.Context
         .AddJsonFile("appsettings.json")
         .Build();
 
-      optionsBuilder.UseSqlServer(config.GetConnectionString("LocalConnection"));
+      optionsBuilder.UseSqlServer(config.GetConnectionString("EphromConnection"));
 
     }
   }

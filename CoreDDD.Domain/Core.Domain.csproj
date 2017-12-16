@@ -5,11 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Interfaces\IUnityOfWork.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentValidation" Version="7.2.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Core.Domain.Core\Core.Domain.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Eventos\Commands\" />
+    <Folder Include="Eventos\Events\" />
+    <Folder Include="Eventos\Repository\" />
   </ItemGroup>
 
 </Project>

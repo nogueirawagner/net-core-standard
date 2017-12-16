@@ -1,4 +1,5 @@
 ﻿using Core.Domain.Models;
+using Core.Domain.Models.Eventos;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;

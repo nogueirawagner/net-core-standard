@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Core.Domain.Models
+namespace Core.Domain.Models.Eventos
 {
   public class Organizador : Entity<Organizador>
   {

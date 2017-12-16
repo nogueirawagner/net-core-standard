@@ -1,9 +1,8 @@
 ﻿using Core.Domain.Core.Models;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace Core.Domain.Models
+namespace Core.Domain.Models.Eventos
 {
   public class Categoria : Entity<Categoria>
   {
@@ -12,12 +11,18 @@ namespace Core.Domain.Models
       Id = pId;
     }
 
-    // Um evento tem n categoria : Na tabela de eventos a mesma categoria está para vários eventos
+    public string Nome { get; private set; }
+
+    // EF Propriedade de Navegação 
     public virtual ICollection<Evento> Eventos { get; set; }
+
+    // Construtor para o EF
+    protected Categoria() { }
+
 
     public override bool EhValido()
     {
-      throw new NotImplementedException();
+      return true;
     }
   }
 }

@@ -8,9 +8,10 @@ using Core.Infra.Data.Context;
 namespace Core.Infra.Data.Migrations
 {
     [DbContext(typeof(CoreContext))]
-    partial class XCoreContextModelSnapshot : ModelSnapshot
+    [Migration("20171216193000_V1")]
+    partial class V1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.4")
