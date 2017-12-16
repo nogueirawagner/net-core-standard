@@ -1,8 +1,9 @@
-﻿  using Core.Domain.Core.Models;
+﻿using Core.Domain.Core.Models;
+using Core.Domain.Models.Eventos;
 using System;
 using System.Collections.Generic;
 
-namespace Core.Domain.Models.Eventos
+namespace Core.Domain.Models.Organizadores
 {
   public class Organizador : Entity<Organizador>
   {

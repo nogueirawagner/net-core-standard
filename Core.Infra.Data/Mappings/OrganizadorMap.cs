@@ -1,5 +1,6 @@
 ﻿using Core.Domain.Models;
 using Core.Domain.Models.Eventos;
+using Core.Domain.Models.Organizadores;
 using Core.Infra.Data.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
