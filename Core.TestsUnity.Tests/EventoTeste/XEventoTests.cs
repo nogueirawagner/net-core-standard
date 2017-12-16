@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
 
-namespace Core.TestsUnity.Tests
+namespace Core.TestsUnity.Tests.EventoTeste
 {
   [TestClass]
   public class XEventoTests

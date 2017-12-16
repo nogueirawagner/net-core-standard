@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Core.Domain.Models
 {
-  public class Evento : XEntity<Evento>
+  public class Evento : Entity<Evento>
   {
     public Evento(string pNome, string pDescricao, DateTime pDataInicio, DateTime pDataFim,
       bool pGratuito, decimal pValor, bool pOnline, string pNomeEmpresa)

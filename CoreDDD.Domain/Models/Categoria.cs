@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Core.Domain.Models
 {
-  public class Categoria : XEntity<Categoria>
+  public class Categoria : Entity<Categoria>
   {
     public Categoria(Guid pId)
     {

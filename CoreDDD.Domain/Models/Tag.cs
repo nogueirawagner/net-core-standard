@@ -3,7 +3,7 @@ using System;
 
 namespace Core.Domain.Models
 {
-  public class Tag : XEntity<Tag>
+  public class Tag : Entity<Tag>
   {
     public Tag(Guid pId)
     {

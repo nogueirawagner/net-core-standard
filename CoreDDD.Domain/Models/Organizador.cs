@@ -1,10 +1,10 @@
-﻿using Core.Domain.Core.Models;
+﻿  using Core.Domain.Core.Models;
 using System;
 using System.Collections.Generic;
 
 namespace Core.Domain.Models
 {
-  public class Organizador : XEntity<Organizador>
+  public class Organizador : Entity<Organizador>
   {
     public string Nome { get; set; }
     public string CPF { get; set; }

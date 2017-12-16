@@ -7,7 +7,7 @@ using Core.Infra.Data.Context;
 
 namespace Core.Infra.Data.Migrations
 {
-    [DbContext(typeof(XCoreContext))]
+    [DbContext(typeof(CoreContext))]
     [Migration("20171215152822_Initial")]
     partial class Initial
     {
