@@ -3,6 +3,7 @@ using Core.Domain.Core.Events;
 using Core.Domain.Eventos.Commands;
 using Core.Domain.Models.Eventos;
 using Eventos.IO.Domain.Eventos.Repository;
+using Eventos.IO.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,11 +16,12 @@ namespace Core.Domain.Eventos.CommandHandlers
     IHandler<ExcluirEventoCommand>
   {
 
-    public EventoCommandHandler(IEventoRepository eventoRepository)
+    public EventoCommandHandler(IEventoRepository eventoRepository, IUnitOfWork uow)
+      :base(uow)
     {
       _eventoRepository = eventoRepository;
     }
-
+    
     private readonly IEventoRepository _eventoRepository;
 
     public void Handle(RegistrarEventoCommand message)
@@ -39,7 +41,14 @@ namespace Core.Domain.Eventos.CommandHandlers
 
 
       // Persistencia
+
+
       _eventoRepository.Adicionar(evento);
+
+      if (Commit())
+      {
+        // Notificar processo concluído!
+      }
     }
 
     public void Handle(ExcluirEventoCommand message)

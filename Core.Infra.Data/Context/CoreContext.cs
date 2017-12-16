@@ -1,4 +1,5 @@
 ﻿using Core.Domain.Models.Eventos;
+using Core.Domain.Models.Organizadores;
 using Core.Infra.Data.Extensions;
 using Core.Infra.Data.Mappings;
 using Microsoft.EntityFrameworkCore;
