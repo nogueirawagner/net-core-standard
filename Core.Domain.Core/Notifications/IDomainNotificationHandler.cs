@@ -7,7 +7,7 @@ namespace Core.Domain.Core.Notifications
 {
   public interface IDomainNotificationHandler<T> : IHandler<T> where T : Message
   {
-    bool HasNotification();
+    bool HasNotifications();
     List<T> GetNotifications();
   }
 }

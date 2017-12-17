@@ -23,7 +23,7 @@ namespace Core.Domain.Core.Notifications
       _notifications.Add(message);
     }
 
-    public bool HasNotification()
+    public bool HasNotifications()
     {
       return _notifications.Any();
     }

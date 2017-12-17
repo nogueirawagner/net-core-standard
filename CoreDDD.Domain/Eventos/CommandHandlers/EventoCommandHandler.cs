@@ -1,6 +1,7 @@
 ﻿using Core.Domain.CommandHandlers;
 using Core.Domain.Core.Bus;
 using Core.Domain.Core.Events;
+using Core.Domain.Core.Notifications;
 using Core.Domain.Eventos.Commands;
 using Core.Domain.Eventos.Events;
 using Core.Domain.Models.Eventos;
@@ -20,12 +21,18 @@ namespace Core.Domain.Eventos.CommandHandlers
 
     private readonly IEventoRepository _eventoRepository;
     private readonly IBus _bus;
+    private readonly IDomainNotificationHandler<DomainNotification> _notifications;
 
-    public EventoCommandHandler(IEventoRepository eventoRepository, IUnitOfWork uow, IBus bus)
-      : base(uow, bus)
+    public EventoCommandHandler(
+      IEventoRepository eventoRepository, 
+      IUnitOfWork uow, 
+      IBus bus, 
+      IDomainNotificationHandler<DomainNotification> notifications)
+      : base(uow, bus, notifications)
     {
       _eventoRepository = eventoRepository;
       _bus = bus;
+      _notifications = notifications;
     }
 
     public void Handle(RegistrarEventoCommand message)
