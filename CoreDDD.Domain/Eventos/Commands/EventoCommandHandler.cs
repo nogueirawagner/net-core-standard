@@ -2,16 +2,12 @@
 using Core.Domain.Core.Bus;
 using Core.Domain.Core.Events;
 using Core.Domain.Core.Notifications;
-using Core.Domain.Eventos.Commands;
 using Core.Domain.Eventos.Events;
 using Core.Domain.Models.Eventos;
 using Eventos.IO.Domain.Eventos.Repository;
 using Eventos.IO.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Core.Domain.Eventos.CommandHandlers
+namespace Core.Domain.Eventos.Commands
 {
   public class EventoCommandHandler : CommandHandler,
     IHandler<RegistrarEventoCommand>,

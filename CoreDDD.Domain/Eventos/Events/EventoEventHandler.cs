@@ -1,10 +1,6 @@
 ﻿using Core.Domain.Core.Events;
-using Core.Domain.Eventos.Events;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Core.Domain.Eventos.EventHandlers
+namespace Core.Domain.Eventos.Events
 {
   public class EventoEventHandler :
     IHandler<EventoRegistradoEvent>,
