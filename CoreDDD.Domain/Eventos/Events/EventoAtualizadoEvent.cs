@@ -1,17 +1,18 @@
-﻿using Core.Domain.Core.Events;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Core.Domain.Eventos.Events
 {
-  public class EventoRegistradoEvent : BaseEventoEvent
+  public class EventoAtualizadoEvent : BaseEventoEvent
   {
-    public EventoRegistradoEvent(Guid id, string pNome, DateTime pDataInicio, DateTime pDataFim,
+    public EventoAtualizadoEvent(Guid id, string pNome, string pDescricao, string pDescricaoCurta, DateTime pDataInicio, DateTime pDataFim,
         bool pGratuito, decimal pValor, bool pOnline, string pNomeEmpresa)
     {
       Id = id;
       Nome = pNome;
+      Descricao = pDescricao;
+      DescricaoCurta = pDescricaoCurta;
       DataInicio = pDataInicio;
       Valor = pValor;
       Gratuito = pGratuito;

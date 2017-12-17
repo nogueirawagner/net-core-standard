@@ -4,7 +4,13 @@ using System.Text;
 
 namespace Core.Domain.Core.Events
 {
-    public class Event
+  public abstract class Event : Message
+  {
+    public DateTime Timestamp { get; private set; }
+
+    public Event()
     {
+      Timestamp = DateTime.Now;
     }
+  }
 }
