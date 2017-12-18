@@ -6,6 +6,7 @@ using Core.Domain.Eventos.Events;
 using Core.Domain.Models.Eventos;
 using Eventos.IO.Domain.Eventos.Repository;
 using Eventos.IO.Domain.Interfaces;
+using System;
 
 namespace Core.Domain.Eventos.Commands
 {
@@ -20,9 +21,9 @@ namespace Core.Domain.Eventos.Commands
     private readonly IDomainNotificationHandler<DomainNotification> _notifications;
 
     public EventoCommandHandler(
-      IEventoRepository eventoRepository, 
-      IUnitOfWork uow, 
-      IBus bus, 
+      IEventoRepository eventoRepository,
+      IUnitOfWork uow,
+      IBus bus,
       IDomainNotificationHandler<DomainNotification> notifications)
       : base(uow, bus, notifications)
     {
@@ -36,11 +37,7 @@ namespace Core.Domain.Eventos.Commands
       var evento = new Evento(message.Nome, message.Descricao, message.DataInicio, message.DataFim,
         message.Gratuito, message.Valor, message.Online, message.NomeEmpresa);
 
-      if (!evento.EhValido())
-      {
-        NotificarValidacoesErro(evento.ValidationResult);
-        return;
-      }
+      if (!EventoValido(evento)) return;
 
       // TODO:
       // Validações de negócio
@@ -54,18 +51,49 @@ namespace Core.Domain.Eventos.Commands
 
     public void Handle(ExcluirEventoCommand message)
     {
+      if (!EventoExiste(message.Id, message.MessageType)) return;
+
       _eventoRepository.Remover(message.Id);
-      _bus.RaiseEvent(new EventoExcluidoEvent(message.Id));
+      if (Commit())
+        _bus.RaiseEvent(new EventoExcluidoEvent(message.Id));
     }
 
     public void Handle(AtualizarEventoCommand message)
     {
-      //var evento = new Evento(message.Nome, message.Descricao, message.DataInicio, message.DataFim,
-      // message.Gratuito, message.Valor, message.Online, message.NomeEmpresa);
+      if (!EventoExiste(message.Id, message.MessageType)) return;
 
-      //_eventoRepository.Atualizar(evento);
+      var evento = Evento.EventoFactory.NovoEventoCompleto(
+          message.Id, message.Nome, message.Descricao,
+          message.DescricaoCurta, message.DataInicio, message.DataFim, message.Gratuito,
+          message.Valor, message.Online, message.NomeEmpresa, null);
 
-      //_bus.RaiseEvent(new EventoAtualizadoEvent(evento.Id, ))
+      if (!EventoValido(evento)) return;
+
+      _eventoRepository.Atualizar(evento);
+      if (Commit())
+      {
+        _bus.RaiseEvent(new EventoAtualizadoEvent(
+          evento.Id, evento.Nome, evento.Descricao, evento.DescricaoCurta,
+          evento.DataInicio, evento.DataFim, evento.Gratuito, evento.Valor,
+          evento.Online, evento.NomeEmpresa));
+      }
+    }
+
+    private bool EventoValido(Evento evento)
+    {
+      if (evento.EhValido()) return true;
+
+      NotificarValidacoesErro(evento.ValidationResult);
+      return false;
+    }
+
+    private bool EventoExiste(Guid id, string messageType)
+    {
+      var evento = _eventoRepository.PegarPorId(id);
+      if (evento != null) return true;
+
+      _bus.RaiseEvent(new DomainNotification(messageType, "Evento não encontrado."));
+      return false;
     }
   }
 }

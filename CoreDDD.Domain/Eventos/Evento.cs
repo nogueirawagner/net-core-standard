@@ -20,6 +20,9 @@ namespace Core.Domain.Models.Eventos
       Online = pOnline;
       NomeEmpresa = pNomeEmpresa;
     }
+    private Evento()
+    {
+    }
 
     public string Nome { get; private set; }
     public string DescricaoCurta { get; private set; }
@@ -46,6 +49,7 @@ namespace Core.Domain.Models.Eventos
       return ValidationResult.IsValid;
     }
 
+    #region Validações
     public void AtribuirEndereco(Endereco endereco)
     {
       if (!endereco.EhValido()) return;
@@ -63,8 +67,6 @@ namespace Core.Domain.Models.Eventos
       // TODO: Deve validar alguma regra?
       Excluido = true;
     }
-
-    #region Validações
 
     private void Validar()
     {
@@ -143,5 +145,29 @@ namespace Core.Domain.Models.Eventos
     }
 
     #endregion
+
+    public static class EventoFactory
+    {
+      public static Evento NovoEventoCompleto(Guid id, string pNome, string pDescricao, string pDescricaoCurta, DateTime pDataInicio, DateTime pDataFim,
+        bool pGratuito, decimal pValor, bool pOnline, string pNomeEmpresa, Guid? organizadorId)
+      {
+        var evento = new Evento()
+        {
+          Id = id,
+          Nome = pNome,
+          Descricao = pDescricao,
+          DataInicio = pDataInicio,
+          Valor = pValor,
+          Gratuito = pGratuito,
+          Online = pOnline,
+          NomeEmpresa = pNomeEmpresa
+        };
+
+        if (organizadorId != null)
+          evento.Organizador = new Organizador(organizadorId.Value, "", "", "");
+
+        return evento;
+      }
+    }
   }
 }
