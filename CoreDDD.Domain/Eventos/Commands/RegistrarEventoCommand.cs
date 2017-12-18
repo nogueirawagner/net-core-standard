@@ -6,8 +6,7 @@ namespace Core.Domain.Eventos.Commands
 {
   public class RegistrarEventoCommand : BaseEventoCommand
   {
-
-    public RegistrarEventoCommand(string pNome, string pDescricao, DateTime pDataInicio, DateTime pDataFim,
+    public RegistrarEventoCommand(string pNome, DateTime pDataInicio, DateTime pDataFim,
       bool pGratuito, decimal pValor, bool pOnline, string pNomeEmpresa)
     {
       Nome = pNome;

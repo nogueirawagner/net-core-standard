@@ -1,4 +1,5 @@
-﻿using Core.Domain.Models;
+﻿using Core.Domain.Eventos.Commands;
+using Core.Domain.Models;
 using Core.Domain.Models.Eventos;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -9,36 +10,53 @@ namespace Core.TestsUnity.Tests.EventoTeste
   [TestClass]
   public class XEventoTests
   {
-    [TestMethod, TestCategory("Core"), TestProperty("Autor", "Wagner")]
-    [Description("Cria evento com nome menor que tres caracteres")]
-    public void TesteNomeEventoInValido()
+    [TestMethod]
+    public void CriaRegistro()
     {
-      var evento = new Evento("No", "Curso", DateTime.Now, DateTime.Now, false, 40, true, "Wagner");
-      evento.EhValido();
-      Assert.IsFalse(evento.ValidationResult.IsValid);
-      Assert.AreEqual(evento.ValidationResult.Errors.Count, 1);
-      Assert.AreEqual(evento.ValidationResult.Errors.First().ErrorMessage, "O nome deve conter entre 3 e 150 caracteres");
+      var bus = new FakeBus();
+      //Criar o comando de registro com sucesso
+      var cmd = new RegistrarEventoCommand(
+        "Legal", DateTime.Now.AddDays(12), DateTime.Now.AddDays(13), true, 0, true, "Wagner Nogueira");
+      bus.SendCommand(cmd);
     }
 
-    [TestMethod, TestCategory("Core"), TestProperty("Autor", "Wagner")]
-    [Description("Cria evento com nome menor que tres caracteres e marcar gratuito inserindo um valor")]
-    public void TesteNomeValorInValido()
+    [TestMethod]
+    public void CriaRegistroFalho()
     {
-      var evento = new Evento("No", "Curso", DateTime.Now, DateTime.Now, true, 40, true, "Wagner");
-      evento.EhValido();
-      Assert.IsFalse(evento.ValidationResult.IsValid);
-      Assert.AreEqual(evento.ValidationResult.Errors.Count, 2);
-      Assert.AreEqual(evento.ValidationResult.Errors.First(s => s.PropertyName == "Nome").ErrorMessage, "O nome deve conter entre 3 e 150 caracteres");
-      Assert.AreEqual(evento.ValidationResult.Errors.First(s => s.PropertyName == "Valor").ErrorMessage, "O valor deve ser zero para evento gratuito");
+      var bus = new FakeBus();
+      //Criar o comando de registro com sucesso
+      var cmd = new RegistrarEventoCommand(
+        "Legal", DateTime.Now.AddDays(12), DateTime.Now.AddDays(13), true, 0, true, "Wagner Nogueira");
+      bus.SendCommand(cmd);
     }
 
-    [TestMethod, TestCategory("Core"), TestProperty("Autor", "Wagner")]
-    [Description("Cria evento com nome maior que tres caracteres")]
-    public void TesteNomeEventoValido()
+
+    [TestMethod]
+    public void AtualizarEvento()
     {
-      var evento = new Evento("Nome", "Curso", DateTime.Now, DateTime.Now, false, 40, true, "Wagner");
-      evento.EhValido();
-      Assert.IsTrue(evento.ValidationResult.IsValid);
+      var bus = new FakeBus();
+      //Criar o comando de registro com sucesso
+      var cmd = new RegistrarEventoCommand(
+          "Legal", DateTime.Now.AddDays(12), DateTime.Now.AddDays(13), true, 0, true, "Wagner Nogueira");
+      bus.SendCommand(cmd);
+
+      var att = new AtualizarEventoCommand(cmd.Id, "Legal", "Descricao", "Desc", DateTime.Now.AddDays(12), DateTime.Now.AddDays(13), true, 0, true, "Wagner Nogueira");
+      bus.SendCommand(att);
+    }
+
+    [TestMethod]
+    public void ExcluirEvento()
+    {
+      var bus = new FakeBus();
+      //Criar o comando de registro com sucesso
+      var cmd = new RegistrarEventoCommand(
+        "Legal", DateTime.Now.AddDays(12), DateTime.Now.AddDays(13), true, 0, true, "Wagner Nogueira");
+      bus.SendCommand(cmd);
+
+      var excluir = new ExcluirEventoCommand(cmd.Id);
+      bus.SendCommand(excluir);
+
     }
   }
+
 }
