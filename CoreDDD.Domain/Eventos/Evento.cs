@@ -49,7 +49,8 @@ namespace Core.Domain.Models.Eventos
       return ValidationResult.IsValid;
     }
 
-    #region Validações
+    
+    // Ad hoc setter
     public void AtribuirEndereco(Endereco endereco)
     {
       if (!endereco.EhValido()) return;
@@ -68,6 +69,7 @@ namespace Core.Domain.Models.Eventos
       Excluido = true;
     }
 
+    #region Validações
     private void Validar()
     {
       ValidarNome();
@@ -148,23 +150,28 @@ namespace Core.Domain.Models.Eventos
 
     public static class EventoFactory
     {
-      public static Evento NovoEventoCompleto(Guid id, string pNome, string pDescricao, string pDescricaoCurta, DateTime pDataInicio, DateTime pDataFim,
-        bool pGratuito, decimal pValor, bool pOnline, string pNomeEmpresa, Guid? organizadorId)
+      public static Evento NovoEventoCompleto(Guid id, string nome, string descricao, string descricaoCurta, DateTime dataInicio, DateTime dataFim,
+        bool gratuito, decimal valor, bool online, string nomeEmpresa, Guid? organizadorId, Endereco endereco, Categoria categoria)
       {
         var evento = new Evento()
         {
           Id = id,
-          Nome = pNome,
-          Descricao = pDescricao,
-          DataInicio = pDataInicio,
-          Valor = pValor,
-          Gratuito = pGratuito,
-          Online = pOnline,
-          NomeEmpresa = pNomeEmpresa
+          Nome = nome,
+          Descricao = descricao,
+          DataInicio = dataInicio,
+          Valor = valor,
+          Gratuito = gratuito,
+          Online = online,
+          NomeEmpresa = nomeEmpresa,
+          Endereco = endereco,
+          Categoria = categoria
         };
 
         if (organizadorId != null)
           evento.Organizador = new Organizador(organizadorId.Value, "", "", "");
+
+        if (online)
+          evento.Endereco = null;
 
         return evento;
       }

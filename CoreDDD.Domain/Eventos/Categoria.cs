@@ -6,9 +6,9 @@ namespace Core.Domain.Models.Eventos
 {
   public class Categoria : Entity<Categoria>
   {
-    public Categoria(Guid pId)
+    public Categoria(Guid id)
     {
-      Id = pId;
+      Id = id;
     }
 
     public string Nome { get; private set; }
