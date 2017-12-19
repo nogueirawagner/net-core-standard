@@ -22,8 +22,24 @@ namespace Core.Domain.Models.Eventos
     public Guid? EventoId { get; private set; }
 
     // EF propriedade de navegação
-    public Evento Evento { get; private set; }
+    public virtual Evento Evento { get; private set; }
 
+    public Endereco(Guid id, string logradouro, string numero, string bairro, string cep, 
+      string complemento, string cidade, string estado, Guid eventoId)
+    {
+      Id = id;
+      Logradouro = logradouro;
+      Numero = numero;
+      Bairro = bairro;
+      CEP = cep;
+      Complemento = complemento;
+      Cidade = cidade;
+      Estado = estado;
+      EventoId = eventoId;
+    }
+
+
+    // Construtor para o EF
     protected Endereco()
     {
     }

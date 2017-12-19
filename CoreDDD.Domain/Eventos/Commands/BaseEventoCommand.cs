@@ -1,4 +1,5 @@
 ﻿using Core.Domain.Core.Commands;
+using Core.Domain.Models.Eventos;
 using System;
 
 namespace Core.Domain.Eventos.Commands
@@ -15,5 +16,8 @@ namespace Core.Domain.Eventos.Commands
     public decimal Valor { get; protected set; }
     public bool Online { get; protected set; }
     public string NomeEmpresa { get; protected set; }
+    public Guid OrganizadorId { get; set; }
+    public Endereco Endereco { get; set; }
+    public Categoria Categoria { get; set; }
   }
 }

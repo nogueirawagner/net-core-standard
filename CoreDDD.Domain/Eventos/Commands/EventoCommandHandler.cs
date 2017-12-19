@@ -34,8 +34,10 @@ namespace Core.Domain.Eventos.Commands
 
     public void Handle(RegistrarEventoCommand message)
     {
-      var evento = new Evento(message.Nome, message.Descricao, message.DataInicio, message.DataFim,
-        message.Gratuito, message.Valor, message.Online, message.NomeEmpresa);
+      var evento = Evento.EventoFactory.NovoEventoCompleto(
+          message.Id, message.Nome, message.Descricao,
+          message.DescricaoCurta, message.DataInicio, message.DataFim, message.Gratuito,
+          message.Valor, message.Online, message.NomeEmpresa, message.OrganizadorId, message.Endereco, message.Categoria.Id);
 
       if (!EventoValido(evento)) return;
 
@@ -62,10 +64,14 @@ namespace Core.Domain.Eventos.Commands
     {
       if (!EventoExiste(message.Id, message.MessageType)) return;
 
+      var eventoAtual = _eventoRepository.PegarPorId(message.Id);
+
+      // Quem edita é o dono do evento?
+
       var evento = Evento.EventoFactory.NovoEventoCompleto(
           message.Id, message.Nome, message.Descricao,
           message.DescricaoCurta, message.DataInicio, message.DataFim, message.Gratuito,
-          message.Valor, message.Online, message.NomeEmpresa, null);
+          message.Valor, message.Online, message.NomeEmpresa, message.OrganizadorId, eventoAtual.Endereco, message.Categoria.Id);
 
       if (!EventoValido(evento)) return;
 
