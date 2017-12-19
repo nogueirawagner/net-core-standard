@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1- Presentation", "1- Presentation", "{53E22521-55B7-4769-AAF0-386B60764579}"
 EndProject
@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Infra.Data", "Core.Inf
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.TestsUnity.Tests", "Core.TestsUnity.Tests\Core.TestsUnity.Tests.csproj", "{CCAF2E59-C472-44AB-91A1-641022BECFD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Site", "Core.Site\Core.Site.csproj", "{68BF5A72-76B2-4CD3-BEDE-D15713F122D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Site", "Core.Site\Core.Site.csproj", "{68BF5A72-76B2-4CD3-BEDE-D15713F122D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
