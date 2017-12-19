@@ -151,7 +151,7 @@ namespace Core.Domain.Models.Eventos
     public static class EventoFactory
     {
       public static Evento NovoEventoCompleto(Guid id, string nome, string descricao, string descricaoCurta, DateTime dataInicio, DateTime dataFim,
-        bool gratuito, decimal valor, bool online, string nomeEmpresa, Guid? organizadorId, Endereco endereco, Categoria categoria)
+        bool gratuito, decimal valor, bool online, string nomeEmpresa, Guid? organizadorId, Endereco endereco, Guid categoriaId)
       {
         var evento = new Evento()
         {
@@ -164,7 +164,7 @@ namespace Core.Domain.Models.Eventos
           Online = online,
           NomeEmpresa = nomeEmpresa,
           Endereco = endereco,
-          Categoria = categoria
+          CategoriaId = categoriaId
         };
 
         if (organizadorId != null)
