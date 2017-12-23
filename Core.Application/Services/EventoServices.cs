@@ -3,14 +3,22 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Core.Application.ViewModels;
+using Core.Domain.Core.Bus;
+using Core.Domain.Eventos.Commands;
 
 namespace Core.Application.Services
 {
   public class EventoServices : IEventoServices
   {
+    private readonly IBus _bus;
+    public EventoServices(IBus bus)
+    {
+      _bus = bus;
+    }
     public void Registrar(EventoViewModel eventoViewModel)
     {
-      throw new NotImplementedException();
+      //var registroCommando = new RegistrarEventoCommand();
+      //_bus.SendCommand(registroCommando);
     }
 
     public EventoViewModel ObterPorId(Guid id)

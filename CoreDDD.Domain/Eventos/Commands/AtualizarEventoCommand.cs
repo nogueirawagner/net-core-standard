@@ -7,18 +7,20 @@ namespace Core.Domain.Eventos.Commands
 {
   public class AtualizarEventoCommand : BaseEventoCommand
   {
-    public AtualizarEventoCommand(Guid id, string pNome, string pDescricao, string pDescricaoCurta, DateTime pDataInicio, DateTime pDataFim,
-      bool pGratuito, decimal pValor, bool pOnline, string pNomeEmpresa)
+    public AtualizarEventoCommand(Guid id, string nome, string descricao, string descricaoCurta, DateTime dataInicio, DateTime dataFim,
+      bool gratuito, decimal valor, bool online, string nomeEmpresa, Guid organizadorId, Guid categoriaId)
     {
       Id = id;
-      Nome = pNome;
-      Descricao = pDescricao;
-      DescricaoCurta = pDescricaoCurta;
-      DataInicio = pDataInicio;
-      Valor = pValor;
-      Gratuito = pGratuito;
-      Online = pOnline;
-      NomeEmpresa = pNomeEmpresa;
+      Nome = nome;
+      Descricao = descricao;
+      DescricaoCurta = descricaoCurta;
+      DataInicio = dataInicio;
+      Valor = valor;
+      Gratuito = gratuito;
+      Online = online;
+      NomeEmpresa = nomeEmpresa;
+      OrganizadorId = organizadorId;
+      CategoriaId = categoriaId;
     }
   }
 }

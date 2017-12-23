@@ -26,8 +26,8 @@ namespace Core.Application.ViewModels
     [Display(Name = "Descricao curta do Evento")]
     public string DescricaoCurta { get; set; }
 
-    [Display(Name = "Descricao longa do Evento")]
-    public string DescricaoLonga { get; set; }
+    [Display(Name = "Descricao do Evento")]
+    public string Descricao { get; set; }
 
     [Display(Name = "Início do Evento")]
     [Required(ErrorMessage = "A data é requerida")]
@@ -54,6 +54,7 @@ namespace Core.Application.ViewModels
     public EnderecoViewModel Endereco { get; set; }
     public CategoriaViewModel Categoria { get; set; }
     public Guid CategoriaId { get; set; }
+    public Guid OrganizadorId { get; set; }
 
   }
 }

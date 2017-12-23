@@ -6,15 +6,23 @@ namespace Core.Domain.Eventos.Commands
 {
   public class RegistrarEventoCommand : BaseEventoCommand
   {
-    public RegistrarEventoCommand(string pNome, DateTime pDataInicio, DateTime pDataFim,
-      bool pGratuito, decimal pValor, bool pOnline, string pNomeEmpresa)
+    public IncluirEnderecoCommand Endereco { get; private set; }
+
+    public RegistrarEventoCommand(string nome, string descricao, string descricaoCurta, DateTime dataInicio, DateTime dataFim,
+      bool gratuito, decimal valor, bool online, string nomeEmpresa, Guid organizadorId, 
+      Guid categoriaId, IncluirEnderecoCommand endereco)
     {
-      Nome = pNome;
-      DataInicio = pDataInicio;
-      Valor = pValor;
-      Gratuito = pGratuito;
-      Online = pOnline;
-      NomeEmpresa = pNomeEmpresa;
+      Nome = nome;
+      Descricao = descricao;
+      DescricaoCurta = descricaoCurta;
+      DataInicio = dataInicio;
+      Valor = valor;
+      Gratuito = gratuito;
+      Online = online;
+      NomeEmpresa = nomeEmpresa;
+      OrganizadorId = organizadorId;
+      CategoriaId = categoriaId;
+      Endereco = endereco;
     }
   }
 }
