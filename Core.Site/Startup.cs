@@ -41,7 +41,7 @@ namespace Core.Site
         {
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("EphromConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("LocalConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
