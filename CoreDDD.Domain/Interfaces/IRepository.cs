@@ -9,8 +9,8 @@ namespace Core.Domain.Interfaces
   {
     void Adicionar(TEntity obj);
     void Atualizar(TEntity obj);
-    TEntity PegarPorId(Guid id);
-    IEnumerable<TEntity> PegarTodos();
+    TEntity ObterPorId(Guid id);
+    IEnumerable<TEntity> ObterTodos();
     IEnumerable<TEntity> Buscar(Expression<Func<TEntity, bool>> predicate);
     void Remover(Guid id);
     int SaveChanges();

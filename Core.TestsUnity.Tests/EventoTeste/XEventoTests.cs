@@ -16,7 +16,8 @@ namespace Core.TestsUnity.Tests.EventoTeste
       var bus = new FakeBus();
       //Criar o comando de registro com sucesso
       var cmd = new RegistrarEventoCommand(
-        "Legal", DateTime.Now.AddDays(12), DateTime.Now.AddDays(13), true, 0, true, "Wagner Nogueira");
+        "Nome do Evento", "Descricao Evento", "Desc Event", DateTime.Now.AddDays(20), DateTime.Now.AddDays(20), true,
+        0, true, "Wagner Nogueira", Guid.Empty, Guid.Empty, null);
       bus.SendCommand(cmd);
     }
 
@@ -26,31 +27,35 @@ namespace Core.TestsUnity.Tests.EventoTeste
       var bus = new FakeBus();
       //Criar o comando de registro com sucesso
       var cmd = new RegistrarEventoCommand(
-        "Legal", DateTime.Now.AddDays(12), DateTime.Now.AddDays(13), true, 0, true, "Wagner Nogueira");
+        "Nome do Evento", "Descricao Evento", "Desc Event", DateTime.Now.AddDays(20), DateTime.Now.AddDays(20), true,
+        0, true, "Wagner Nogueira", Guid.Empty, Guid.Empty, null);
       bus.SendCommand(cmd);
     }
-
-
-    [TestMethod]
+    
+    [TestMethod, TestCategory("Evento"), TestProperty("Autor", "Wagner")]
+    [Description("Atualizar evento")]
     public void AtualizarEvento()
     {
       var bus = new FakeBus();
       //Criar o comando de registro com sucesso
       var cmd = new RegistrarEventoCommand(
-          "Legal", DateTime.Now.AddDays(12), DateTime.Now.AddDays(13), true, 0, true, "Wagner Nogueira");
+          "Nome do Evento", "Descricao Evento", "Desc Event", DateTime.Now.AddDays(20), DateTime.Now.AddDays(20), true,
+        0, true, "Wagner Nogueira", Guid.Empty, Guid.Empty, null);
       bus.SendCommand(cmd);
 
-      var att = new AtualizarEventoCommand(cmd.Id, "Legal", "Descricao", "Desc", DateTime.Now.AddDays(12), DateTime.Now.AddDays(13), true, 0, true, "Wagner Nogueira");
+      var att = new AtualizarEventoCommand(cmd.Id, "Legal", "Descricao", "Desc", DateTime.Now.AddDays(12), DateTime.Now.AddDays(13), true, 0, true, "Wagner Nogueira", Guid.Empty, Guid.Empty);
       bus.SendCommand(att);
     }
 
-    [TestMethod]
+    [TestMethod, TestCategory("Evento"), TestProperty("Autor", "Wagner")]
+    [Description("Excluir evento")]
     public void ExcluirEvento()
     {
       var bus = new FakeBus();
       //Criar o comando de registro com sucesso
       var cmd = new RegistrarEventoCommand(
-        "Legal", DateTime.Now.AddDays(12), DateTime.Now.AddDays(13), true, 0, true, "Wagner Nogueira");
+        "Nome do Evento", "Descricao Evento", "Desc Event", DateTime.Now.AddDays(20), DateTime.Now.AddDays(20), true,
+        0, true, "Wagner Nogueira", Guid.Empty, Guid.Empty, null);
       bus.SendCommand(cmd);
 
       var excluir = new ExcluirEventoCommand(cmd.Id);
