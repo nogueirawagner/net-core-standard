@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Core.Site.Models;
+using Core.Application.ViewModels;
 
 namespace Core.Site.Data
 {
