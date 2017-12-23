@@ -97,12 +97,12 @@ namespace Core.TestsUnity.Tests.EventoTeste
       throw new NotImplementedException();
     }
 
-    public Evento PegarPorId(Guid id)
+    public Evento ObterPorId(Guid id)
     {
       return new Evento("Fake", "News", DateTime.Now, DateTime.Now, true, 0, true, "Aberlado");
     }
 
-    public IEnumerable<Evento> PegarTodos()
+    public IEnumerable<Evento> ObterTodos()
     {
       return null;
     }

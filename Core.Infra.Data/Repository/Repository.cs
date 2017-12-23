@@ -34,12 +34,12 @@ namespace Core.Infra.Data.Repository
       return DbSet.AsNoTracking().Where(predicate);
     }
 
-    public virtual TEntity PegarPorId(Guid id)
+    public virtual TEntity ObterPorId(Guid id)
     {
       return DbSet.AsNoTracking().FirstOrDefault(s => s.Id == id);
     }
 
-    public virtual IEnumerable<TEntity> PegarTodos()
+    public virtual IEnumerable<TEntity> ObterTodos()
     {
       return DbSet.ToList();
     }
