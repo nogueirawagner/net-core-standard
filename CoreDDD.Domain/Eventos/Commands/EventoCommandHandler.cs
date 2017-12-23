@@ -65,7 +65,7 @@ namespace Core.Domain.Eventos.Commands
     {
       if (!EventoExiste(message.Id, message.MessageType)) return;
 
-      var eventoAtual = _eventoRepository.PegarPorId(message.Id);
+      var eventoAtual = _eventoRepository.ObterPorId(message.Id);
 
       // Quem edita é o dono do evento?
 
@@ -96,7 +96,7 @@ namespace Core.Domain.Eventos.Commands
 
     private bool EventoExiste(Guid id, string messageType)
     {
-      var evento = _eventoRepository.PegarPorId(id);
+      var evento = _eventoRepository.ObterPorId(id);
       if (evento != null) return true;
 
       _bus.RaiseEvent(new DomainNotification(messageType, "Evento não encontrado."));
