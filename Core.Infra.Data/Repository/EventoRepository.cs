@@ -8,7 +8,7 @@ namespace Core.Infra.Data.Repository
 {
   public class EventoRepository : Repository<Evento>, IEventoRepository
   {
-    protected EventoRepository(CoreContext db) 
+    public EventoRepository(CoreContext db) 
       : base(db)
     {
     }

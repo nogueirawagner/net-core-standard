@@ -31,7 +31,7 @@ namespace Core.Infra.Data.Context
         .AddJsonFile("appsettings.json")
         .Build();
 
-      optionsBuilder.UseSqlServer(config.GetConnectionString("EphromConnection"));
+      optionsBuilder.UseSqlServer(config.GetConnectionString("LocalConnection"));
 
     }
   }

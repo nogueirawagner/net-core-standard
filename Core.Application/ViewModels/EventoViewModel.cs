@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Core.Application.ViewModels
 {
@@ -27,14 +25,17 @@ namespace Core.Application.ViewModels
     public string DescricaoCurta { get; set; }
 
     [Display(Name = "Descricao do Evento")]
+    
     public string Descricao { get; set; }
 
     [Display(Name = "Início do Evento")]
     [Required(ErrorMessage = "A data é requerida")]
+    [DataType(DataType.Date)]
     public DateTime DataInicio { get; set; }
 
     [Display(Name = "Fim do Evento")]
     [Required(ErrorMessage = "A data é requerida")]
+    [DataType(DataType.Date)]
     public DateTime DataFim { get; set; }
 
     [Display(Name = "Será gratuito?")]
