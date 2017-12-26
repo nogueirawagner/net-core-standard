@@ -19,6 +19,11 @@ namespace Core.Application.AutoMapper
               s.Endereco.Bairro, s.Endereco.CEP, s.Endereco.Complemento,
               s.Endereco.Cidade, s.Endereco.Estado, s.Id)));
 
+      CreateMap<EnderecoViewModel, IncluirEnderecoCommand>()
+        .ConstructUsing(s =>
+          new IncluirEnderecoCommand(Guid.NewGuid(), s.Logradouro, s.Numero,
+            s.Bairro, s.CEP, s.Complemento, s.Cidade, s.Estado, s.EventoId));
+
       CreateMap<EventoViewModel, AtualizarEventoCommand>()
         .ConstructUsing(s => new AtualizarEventoCommand(s.Id, s.Nome, s.Descricao, s.DescricaoCurta, s.DataInicio, s.DataFim, s.Gratuito, s.Valor,
               s.Online, s.NomeEmpresa, s.OrganizadorId, s.CategoriaId));

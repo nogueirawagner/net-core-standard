@@ -29,9 +29,7 @@ namespace Core.Domain.CommandHandlers
 
     protected bool Commit()
     {
-      if (_notifications.HasNotifications())
-        return false;
-
+      if (_notifications.HasNotifications()) return false;
       var cmdResponse = _uow.Commit();
       if (cmdResponse.Success)
         return true;

@@ -5,27 +5,23 @@ using Eventos.IO.Domain.Interfaces;
 namespace Core.Infra.Data.UoW
 {
   public class UnitOfWork : IUnitOfWork
+  {
+    private readonly CoreContext _context;
+
+    public UnitOfWork(CoreContext context)
     {
-        private readonly CoreContext _context;
+      _context = context;
+    }
 
-        public UnitOfWork(CoreContext context)
-        {
-            _context = context;
-        }
-
-        public bool Commit()
-        {
-            return _context.SaveChanges() > 0;
-        }
-
-        public void Dispose()
-        {
-            _context.Dispose();
-        }
-
-    CommandResponse IUnitOfWork.Commit()
+    public CommandResponse Commit()
     {
-      throw new System.NotImplementedException();
+      var rowsAffected = _context.SaveChanges();
+      return new CommandResponse(rowsAffected > 0);
+    }
+
+    public void Dispose()
+    {
+      _context.Dispose();
     }
   }
 }

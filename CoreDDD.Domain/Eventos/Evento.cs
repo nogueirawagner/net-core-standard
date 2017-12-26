@@ -106,8 +106,8 @@ namespace Core.Domain.Models.Eventos
     private void ValidarData()
     {
       RuleFor(c => c.DataInicio)
-          .LessThan(c => c.DataFim)
-          .WithMessage("A data de início deve ser maior que a data do final do evento");
+          .GreaterThan(c => c.DataFim)
+          .WithMessage("A data de início deve ser menor que a data do final do evento");
 
       RuleFor(c => c.DataInicio)
           .GreaterThan(DateTime.Now)
