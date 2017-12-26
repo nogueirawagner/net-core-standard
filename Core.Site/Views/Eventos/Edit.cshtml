@@ -77,20 +77,15 @@
                 <span asp-validation-for="NomeEmpresa" class="text-danger"></span>
             </div>
         </div>
+      
         <div class="form-group">
-            <label asp-for="CategoriaId" class="control-label col-md-2"></label>
+            <label asp-for="Categoria" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="CategoriaId" class="form-control" asp-items="ViewBag.CategoriaId"></select>
-                <span asp-validation-for="CategoriaId" class="text-danger"></span>
+                @Html.Partial("_Categorias")
+                <span asp-validation-for="Categoria" class="text-danger"></span>
             </div>
         </div>
-        <div class="form-group">
-            <label asp-for="OrganizadorId" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="OrganizadorId" class="form-control" />
-                <span asp-validation-for="OrganizadorId" class="text-danger"></span>
-            </div>
-        </div>
+       
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
