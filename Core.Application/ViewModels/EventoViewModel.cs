@@ -25,12 +25,13 @@ namespace Core.Application.ViewModels
     public string DescricaoCurta { get; set; }
 
     [Display(Name = "Descricao do Evento")]
-    
+
     public string Descricao { get; set; }
 
     [Display(Name = "Início do Evento")]
     [Required(ErrorMessage = "A data é requerida")]
-    [DataType(DataType.Date)]
+    [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
+    [DisplayFormat(DataFormatString ="{0:dd/MM/yyyy}")]
     public DateTime DataInicio { get; set; }
 
     [Display(Name = "Fim do Evento")]

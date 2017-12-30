@@ -8,14 +8,17 @@ using Microsoft.EntityFrameworkCore;
 using Core.Application.ViewModels;
 using Core.Site.Data;
 using Core.Application.Interfaces;
+using Core.Domain.Core.Notifications;
 
 namespace Core.Site.Controllers
 {
-  public class EventosController : Controller
+  public class EventosController : BaseController
   {
     private readonly IEventoServices _eventoServices;
 
-    public EventosController(IEventoServices eventoServices)
+    public EventosController(IEventoServices eventoServices,
+                             IDomainNotificationHandler<DomainNotification> notifications)
+      :base(notifications)
     {
       _eventoServices = eventoServices;
     }
@@ -54,6 +57,8 @@ namespace Core.Site.Controllers
 
       _eventoServices.Registrar(eventoViewModel);
 
+      ViewBag.Retorno = OperacaoValida() ? "success, Evento registrado com sucesso" 
+                                         : "error, Ocorreu algum problema verifique as mensagens";
       return View(eventoViewModel);
     }
 
@@ -77,7 +82,8 @@ namespace Core.Site.Controllers
       if (!ModelState.IsValid) return View(eventoViewModel);
       _eventoServices.Atualizar(eventoViewModel);
 
-      //TODO: Operaçao ocorreu com sucesso?
+      ViewBag.Retorno = OperacaoValida() ? "success, Evento atualizado com sucesso"
+                                         : "error, Ocorreu algum problema verifique as mensagens";
 
       return View(eventoViewModel);
     }
@@ -105,6 +111,10 @@ namespace Core.Site.Controllers
     public IActionResult DeleteConfirmed(Guid id)
     {
       _eventoServices.Excluir(id);
+
+      ViewBag.Retorno = OperacaoValida() ? "success, Evento removido com sucesso"
+                                         : "error, Ocorreu algum problema verifique as mensagens";
+
       return RedirectToAction("Index");
     }
   }

@@ -1,47 +1,44 @@
-@model IEnumerable<Core.Application.ViewModels.EventoViewModel>
+﻿@model IEnumerable<Core.Application.ViewModels.EventoViewModel>
 
 @{
-    ViewData["Title"] = "Index";
+  ViewData["Title"] = "Lista de Próximos Eventos";
 }
 
-<h2>Index</h2>
+<h2>@ViewData["Title"]</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="row">
+    <div class="col-md-12">
+        <div class="pull-left">
+            <a asp-action="Create" class="btn btn-primary">
+                <span title="Novo Evento" class="glyphicon glyphicon-plus-sign"> Adicionar Evento</span>
+            </a>
+        </div>
+    </div>
+</div>
+<br/>
+
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Nome)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DescricaoCurta)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Descricao)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DataInicio)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DataFim)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Gratuito)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Valor)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Online)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.NomeEmpresa)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.OrganizadorId)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataFim)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gratuito)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Online)
+            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.Categoria)
             </th>
@@ -49,7 +46,8 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Nome)
@@ -58,38 +56,40 @@
                 @Html.DisplayFor(modelItem => item.DescricaoCurta)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Descricao)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.DataInicio)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DataFim)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Gratuito)
+                @{
+                  if (item.Gratuito)
+                  {
+                    @Html.DisplayName("Sim")
+                  }
+                  else
+                  {
+                    @Html.DisplayFor(modelItem => item.Valor)
+                  }
+                }
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Valor)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Online)
             </td>
+
             <td>
-                @Html.DisplayFor(modelItem => item.NomeEmpresa)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrganizadorId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Categoria.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-search"></span>
+                </a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </a>
             </td>
         </tr>
-}
+                  }
     </tbody>
 </table>

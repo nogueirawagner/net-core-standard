@@ -4,6 +4,7 @@ using Core.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -13,10 +14,13 @@ namespace Core.Infra.Data.Repository
   {
     protected CoreContext Db;
     protected DbSet<TEntity> DbSet;
+    protected DbConnection Connection;
+
     protected Repository(CoreContext db)
     {
       Db = db;
-      DbSet = Db.Set<TEntity>(); 
+      DbSet = Db.Set<TEntity>();
+      Connection = Db.Database.GetDbConnection();
     }
 
     public virtual void Adicionar(TEntity obj)
@@ -43,7 +47,7 @@ namespace Core.Infra.Data.Repository
     {
       return DbSet.ToList();
     }
-    
+
     public virtual void Remover(Guid id)
     {
       var obj = DbSet.Find(id);
