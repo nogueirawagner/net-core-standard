@@ -7,6 +7,9 @@
 
 <h2>@ViewData["Title"]</h2>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.min.css" />
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+
 <form asp-action="Create">
     <div class="form-horizontal">
         <h4>Preencha todos os dados corretamente</h4>
@@ -74,7 +77,7 @@
         <div class="form-group">
             <label asp-for="Valor" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="Valor" class="form-control" />
+                <input data-val-number="O valor está em formato inválido" asp-for="Valor" class="form-control" />
                 <span asp-validation-for="Valor" class="text-danger"></span>
             </div>
         </div>
@@ -108,17 +111,19 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.pt-BR.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.pt.min.js"></script>
 
     <script>
         ValidacoesEvento();
     </script>
 
-
     @{
       if (ViewBag.Retorno != null)
       {
           var notificacao = ViewBag.Retorno.ToString().Split(',');
-        
+
         <script>
             toastr.options = {
                 "closeButton": false,

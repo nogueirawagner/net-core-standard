@@ -6,7 +6,7 @@ using Core.Application.ViewModels;
 using Core.Domain.Core.Bus;
 using Core.Domain.Eventos.Commands;
 using AutoMapper;
-using Eventos.IO.Domain.Eventos.Repository;
+using Core.Domain.Eventos.Repository;
 
 namespace Core.Application.Services
 {

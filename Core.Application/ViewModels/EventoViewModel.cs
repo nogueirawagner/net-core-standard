@@ -30,13 +30,9 @@ namespace Core.Application.ViewModels
 
     [Display(Name = "Início do Evento")]
     [Required(ErrorMessage = "A data é requerida")]
-    [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
-    [DisplayFormat(DataFormatString ="{0:dd/MM/yyyy}")]
     public DateTime DataInicio { get; set; }
 
     [Display(Name = "Fim do Evento")]
-    [Required(ErrorMessage = "A data é requerida")]
-    [DataType(DataType.Date)]
     public DateTime DataFim { get; set; }
 
     [Display(Name = "Será gratuito?")]

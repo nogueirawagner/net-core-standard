@@ -4,8 +4,8 @@ using Core.Domain.Core.Events;
 using Core.Domain.Core.Notifications;
 using Core.Domain.Eventos.Events;
 using Core.Domain.Models.Eventos;
-using Eventos.IO.Domain.Eventos.Repository;
-using Eventos.IO.Domain.Interfaces;
+using Core.Domain.Eventos.Repository;
+using Core.Domain.Interfaces;
 using System;
 
 namespace Core.Domain.Eventos.Commands

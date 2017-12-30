@@ -10,8 +10,8 @@ using Core.Infra.Bus;
 using Core.Infra.Data.Context;
 using Core.Infra.Data.Repository;
 using Core.Infra.Data.UoW;
-using Eventos.IO.Domain.Eventos.Repository;
-using Eventos.IO.Domain.Interfaces;
+using Core.Domain.Eventos.Repository;
+using Core.Domain.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Core.Infra.IoC

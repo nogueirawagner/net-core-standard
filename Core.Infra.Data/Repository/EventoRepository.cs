@@ -1,7 +1,7 @@
 ﻿using Core.Domain.Models.Eventos;
 using Core.Infra.Data.Context;
 using Dapper;
-using Eventos.IO.Domain.Eventos.Repository;
+using Core.Domain.Eventos.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

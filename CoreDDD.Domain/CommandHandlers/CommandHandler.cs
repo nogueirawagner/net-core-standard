@@ -1,6 +1,6 @@
 ﻿using Core.Domain.Core.Bus;
 using Core.Domain.Core.Notifications;
-using Eventos.IO.Domain.Interfaces;
+using Core.Domain.Interfaces;
 using FluentValidation.Results;
 
 namespace Core.Domain.CommandHandlers

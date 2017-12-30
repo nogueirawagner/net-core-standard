@@ -1,6 +1,6 @@
 ﻿using Core.Domain.Core.Commands;
 using Core.Infra.Data.Context;
-using Eventos.IO.Domain.Interfaces;
+using Core.Domain.Interfaces;
 
 namespace Core.Infra.Data.UoW
 {

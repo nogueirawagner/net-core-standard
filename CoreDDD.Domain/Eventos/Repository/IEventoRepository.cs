@@ -3,7 +3,7 @@ using Core.Domain.Models.Eventos;
 using System;
 using System.Collections.Generic;
 
-namespace Eventos.IO.Domain.Eventos.Repository
+namespace Core.Domain.Eventos.Repository
 {
   public interface IEventoRepository : IRepository<Evento>
   {
