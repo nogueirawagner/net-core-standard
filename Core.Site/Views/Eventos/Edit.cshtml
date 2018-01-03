@@ -1,10 +1,10 @@
 @model Core.Application.ViewModels.EventoViewModel
 
 @{
-  ViewData["Title"] = "Edit";
+  ViewData["Title"] = "Editar";
 }
 
-<h2>Edit</h2>
+<h2>Editar</h2>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.min.css" />
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -44,14 +44,14 @@
         <div class="form-group">
             <label asp-for="DataInicio" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="DataInicio" class="form-control" />
+                <input asp-for="DataInicio" type="text" asp-format="{0:dd/MM/yyyy}" class="form-control" />
                 <span asp-validation-for="DataInicio" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="DataFim" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="DataFim" class="form-control" />
+                <input asp-for="DataFim" type="text" asp-format="{0:dd/MM/yyyy}" class="form-control" />
                 <span asp-validation-for="DataFim" class="text-danger"></span>
             </div>
         </div>

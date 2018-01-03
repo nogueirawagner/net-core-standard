@@ -7,20 +7,20 @@ namespace Core.Domain.Models.Organizadores
 {
   public class Organizador : Entity<Organizador>
   {
-    public string Nome { get; set; }
-    public string CPF { get; set; }
-    public string Email { get; set; }
+    public string Nome { get; private set; }
+    public string CPF { get; private set; }
+    public string Email { get; private set; }
 
     protected Organizador()
     {
     }
 
-    public Organizador(Guid pId, string pNome, string pCPF, string pEmail)
+    public Organizador(Guid id, string nome, string cpf, string email)
     {
-      Id = pId;
-      Nome = pNome;
-      CPF = pCPF;
-      Email = pEmail;
+      Id = id;
+      Nome = nome;
+      CPF = cpf;
+      Email = email;
     }
 
     // 1 organizador tem vários eventos : Na tabela de eventos terá vários organizadores do mesmo Id

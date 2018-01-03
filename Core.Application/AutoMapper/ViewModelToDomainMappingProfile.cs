@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Core.Application.ViewModels;
 using Core.Domain.Eventos.Commands;
+using Core.Domain.Organizadores.Commands;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,6 +12,7 @@ namespace Core.Application.AutoMapper
   {
     public ViewModelToDomainMappingProfile()
     {
+      #region Evento
       CreateMap<EventoViewModel, RegistrarEventoCommand>()
         .ConstructUsing(s =>
             new RegistrarEventoCommand(s.Nome, s.Descricao, s.DescricaoCurta, s.DataInicio, s.DataFim, s.Gratuito, s.Valor,
@@ -30,6 +32,14 @@ namespace Core.Application.AutoMapper
 
       CreateMap<EventoViewModel, ExcluirEventoCommand>()
         .ConstructUsing(s => new ExcluirEventoCommand(s.Id));
+
+      #endregion Evento
+
+      #region Organizador
+      CreateMap<OrganizadorViewModel, RegistrarOrganizadorCommand>()
+        .ConstructUsing(c => new RegistrarOrganizadorCommand(c.Id, c.Nome, c.CPF, c.Email));
+      #endregion Organizador
+
     }
   }
 }

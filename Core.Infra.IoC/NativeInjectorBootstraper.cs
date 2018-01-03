@@ -13,6 +13,9 @@ using Core.Infra.Data.UoW;
 using Core.Domain.Eventos.Repository;
 using Core.Domain.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
+using Core.Domain.Organizadores.Commands;
+using Core.Domain.Organizadores.Events;
+using Core.Domain.Organizadores.Repository;
 
 namespace Core.Infra.IoC
 {
@@ -24,22 +27,28 @@ namespace Core.Infra.IoC
       services.AddSingleton(Mapper.Configuration);
       services.AddScoped<IMapper>(s => new Mapper(s.GetRequiredService<IConfigurationProvider>(), s.GetServices));
       services.AddScoped<IEventoServices, EventoServices>();
+      services.AddScoped<IOrganizadorServices, OrganizadorServices>();
 
       // Domain - Commands
       services.AddScoped<IHandler<RegistrarEventoCommand>, EventoCommandHandler>();
       services.AddScoped<IHandler<AtualizarEventoCommand>, EventoCommandHandler>();
       services.AddScoped<IHandler<ExcluirEventoCommand>, EventoCommandHandler>();
+      services.AddScoped<IHandler<RegistrarOrganizadorCommand>, OrganizadorCommandHandler>();
 
       // Domain - Events
       services.AddScoped<IHandler<EventoRegistradoEvent>, EventoEventHandler>();
       services.AddScoped<IHandler<EventoAtualizadoEvent>, EventoEventHandler>();
       services.AddScoped<IHandler<EventoExcluidoEvent>, EventoEventHandler>();
+      services.AddScoped<IHandler<OrganizadorRegistradoEvent>, OrganizadorEventHandler>();
 
       // Domain - Notifications
       services.AddScoped<IDomainNotificationHandler<DomainNotification>, DomainNotificationHandler>();
 
-      // Infra - Data
+      // Infra - Repositoryes
       services.AddScoped<IEventoRepository, EventoRepository>();
+      services.AddScoped<IOrganizadorRepository, OrganizadorRepository>();
+
+      // Infra - Data
       services.AddScoped<IUnitOfWork, UnitOfWork>();
       services.AddScoped<CoreContext>();
       services.AddScoped<IBus, InMemoryBus>();

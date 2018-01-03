@@ -10,10 +10,10 @@ namespace Core.Domain.Core.Notifications
     public string Value { get; set; } // mensagem
     public int Version { get; set; }
 
-    public DomainNotification(string key, string value)
+    public DomainNotification(string messageType, string value)
     {
       DomainNotificationId = Guid.NewGuid();
-      Key = key;
+      Key = messageType;
       Value = value;
       Version = 1;
     }
