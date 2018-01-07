@@ -31,7 +31,7 @@ namespace Core.Application.Services
 
     public void Dispose()
     {
-      Dispose();
+      _organizadorRepository.Dispose();
     }
   }
 }

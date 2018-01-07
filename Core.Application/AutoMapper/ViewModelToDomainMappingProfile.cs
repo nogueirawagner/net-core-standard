@@ -38,6 +38,7 @@ namespace Core.Application.AutoMapper
       #region Organizador
       CreateMap<OrganizadorViewModel, RegistrarOrganizadorCommand>()
         .ConstructUsing(c => new RegistrarOrganizadorCommand(c.Id, c.Nome, c.CPF, c.Email));
+
       #endregion Organizador
 
     }

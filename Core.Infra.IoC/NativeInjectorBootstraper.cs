@@ -16,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Core.Domain.Organizadores.Commands;
 using Core.Domain.Organizadores.Events;
 using Core.Domain.Organizadores.Repository;
+using Microsoft.AspNetCore.Http;
 
 namespace Core.Infra.IoC
 {
@@ -23,6 +24,9 @@ namespace Core.Infra.IoC
   {
     public static void RegisterServices(IServiceCollection services)
     {
+      // AspNet 
+      services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
       // Application
       services.AddSingleton(Mapper.Configuration);
       services.AddScoped<IMapper>(s => new Mapper(s.GetRequiredService<IConfigurationProvider>(), s.GetServices));
@@ -44,7 +48,7 @@ namespace Core.Infra.IoC
       // Domain - Notifications
       services.AddScoped<IDomainNotificationHandler<DomainNotification>, DomainNotificationHandler>();
 
-      // Infra - Repositoryes
+      // Infra - Repositories
       services.AddScoped<IEventoRepository, EventoRepository>();
       services.AddScoped<IOrganizadorRepository, OrganizadorRepository>();
 

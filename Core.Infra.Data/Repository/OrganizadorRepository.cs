@@ -6,7 +6,7 @@ namespace Core.Infra.Data.Repository
 {
   public class OrganizadorRepository : Repository<Organizador>, IOrganizadorRepository
   {
-    protected OrganizadorRepository(CoreContext db) 
+    public OrganizadorRepository(CoreContext db) 
       : base(db)
     {
     }

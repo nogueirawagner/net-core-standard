@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Http;
 using Core.Infra.Bus;
 using Core.Infra.IoC;
 using AutoMapper;
+using Core.Domain.Interfaces;
 
 namespace Core.Site
 {
@@ -59,6 +60,7 @@ namespace Core.Site
       // Add application services.
       services.AddTransient<IEmailSender, AuthMessageSender>();
       services.AddTransient<ISmsSender, AuthMessageSender>();
+      services.AddScoped<IUser, AspNetUser>();
 
       RegisterServices(services);
     }

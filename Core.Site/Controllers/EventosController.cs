@@ -9,16 +9,20 @@ using Core.Application.ViewModels;
 using Core.Site.Data;
 using Core.Application.Interfaces;
 using Core.Domain.Core.Notifications;
+using Core.Domain.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Core.Site.Controllers
 {
+  [Authorize]
   public class EventosController : BaseController
   {
     private readonly IEventoServices _eventoServices;
 
     public EventosController(IEventoServices eventoServices,
-                             IDomainNotificationHandler<DomainNotification> notifications)
-      :base(notifications)
+                             IDomainNotificationHandler<DomainNotification> notifications,
+                             IUser user)
+      :base(notifications, user)
     {
       _eventoServices = eventoServices;
     }
@@ -55,6 +59,7 @@ namespace Core.Site.Controllers
     {
       if (!ModelState.IsValid) return View(eventoViewModel);
 
+      eventoViewModel.OrganizadorId = OrganizadorId;
       _eventoServices.Registrar(eventoViewModel);
 
       ViewBag.Retorno = OperacaoValida() ? "success, Evento registrado com sucesso" 

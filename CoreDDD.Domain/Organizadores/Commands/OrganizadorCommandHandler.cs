@@ -22,9 +22,10 @@ namespace Core.Domain.Organizadores.Commands
     private readonly IDomainNotificationHandler<DomainNotification> _notifications;
 
 
-    public OrganizadorCommandHandler(IUnitOfWork uow, IBus bus, IDomainNotificationHandler<DomainNotification> notifications)
+    public OrganizadorCommandHandler(IUnitOfWork uow, IBus bus, IDomainNotificationHandler<DomainNotification> notifications, IOrganizadorRepository organizadorRepository)
       : base(uow, bus, notifications)
     {
+      _organizadorRepository = organizadorRepository;
       _bus = bus;
       _notifications = notifications;
     }
