@@ -16,9 +16,13 @@ Virtualização com Docker
 Escolhendo o tipo de projeto correto entre .NET Core e .NET Standard
 Consulte: https://docs.microsoft.com/pt-br/dotnet/standard/net-standard
 
---------
+----
 Migração do identity .net core 1.1 para .net core 2.0
 https://docs.microsoft.com/en-us/aspnet/core/migration/1x-to-2x/identity-2x
+
+----
+https://docs.microsoft.com/en-us/aspnet/core/fundamentals/localization
+----
 
 <strong>Standard:</strong> Aponta para a plataforma 'netstandard 1.4' aponta para uma compatibilidade full framework 4.6.1, podendo mudar a versão do .net standard. 
 Irá unir .net core com o .net framework tradicional, e com certeza será facilmente migrada para o .net standard 2.0;
