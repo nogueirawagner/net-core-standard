@@ -21,7 +21,9 @@ Migração do identity .net core 1.1 para .net core 2.0
 https://docs.microsoft.com/en-us/aspnet/core/migration/1x-to-2x/identity-2x
 
 ----
+Configurar internacionalização setando a culture via url:
 https://docs.microsoft.com/en-us/aspnet/core/fundamentals/localization
+
 ----
 
 <strong>Standard:</strong> Aponta para a plataforma 'netstandard 1.4' aponta para uma compatibilidade full framework 4.6.1, podendo mudar a versão do .net standard. 
