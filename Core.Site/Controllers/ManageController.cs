@@ -10,6 +10,7 @@ using Microsoft.Extensions.Options;
 using Core.Infra.Identity.Models;
 using Core.Infra.Identity.Models.ManageViewModels;
 using Core.Infra.Identity.Services;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Core.Site.Controllers
 {
@@ -288,12 +289,13 @@ namespace Core.Site.Controllers
         return View("Error");
       }
       var userLogins = await _userManager.GetLoginsAsync(user);
-      //_signInManager.GetExternalAuthenticationSchemes().Where(auth => userLogins.All(ul => auth.AuthenticationScheme != ul.LoginProvider)).ToList();
+      var schemes = await _signInManager.GetExternalAuthenticationSchemesAsync();
+      var otherLogins = schemes.Where(auth => userLogins.All(ul => auth.Name != ul.LoginProvider)).ToList();
       ViewData["ShowRemoveButton"] = user.PasswordHash != null || userLogins.Count > 1;
       return View(new ManageLoginsViewModel
       {
         CurrentLogins = userLogins,
-        //OtherLogins = otherLogins
+        OtherLogins = otherLogins
       });
     }
 
@@ -304,7 +306,7 @@ namespace Core.Site.Controllers
     public async Task<IActionResult> LinkLogin(string provider)
     {
       // Clear the existing external cookie to ensure a clean login process
-      await HttpContext.Authentication.SignOutAsync(IdentityConstants.ExternalScheme);
+      await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
       // Request a redirect to the external login provider to link a login for the current user
       var redirectUrl = Url.Action(nameof(LinkLoginCallback), "Manage");

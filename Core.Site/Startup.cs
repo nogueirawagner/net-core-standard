@@ -5,6 +5,7 @@ using Core.Infra.Identity.Data;
 using Core.Infra.Identity.Models;
 using Core.Infra.Identity.Services;
 using Core.Infra.IoC;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -50,9 +51,10 @@ namespace Core.Site
 
       services.AddMvc();
       services.AddAutoMapper();
+      services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme);
 
       // Add application services.
-     
+
 
       RegisterServices(services);
     }
@@ -78,7 +80,7 @@ namespace Core.Site
 
       app.UseStaticFiles();
 
-      app.UseIdentity();
+      app.UseAuthentication();
 
       // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
 
