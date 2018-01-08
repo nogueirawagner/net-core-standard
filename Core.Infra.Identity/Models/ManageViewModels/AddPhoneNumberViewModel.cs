@@ -4,13 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Core.Site.Models.ManageViewModels
+namespace Core.Infra.Identity.Models.ManageViewModels
 {
-    public class VerifyPhoneNumberViewModel
+    public class AddPhoneNumberViewModel
     {
-        [Required]
-        public string Code { get; set; }
-
         [Required]
         [Phone]
         [Display(Name = "Phone number")]

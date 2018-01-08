@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using Core.Domain.Interfaces;
+using Core.Infra.Bus;
+using Core.Infra.Identity.Data;
+using Core.Infra.Identity.Models;
+using Core.Infra.Identity.Services;
+using Core.Infra.IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Core.Site.Data;
-using Core.Site.Models;
-using Core.Site.Services;
-using Core.Application.Interfaces;
-using Core.Application.Services;
-using Microsoft.AspNetCore.Http;
-using Core.Infra.Bus;
-using Core.Infra.IoC;
-using AutoMapper;
-using Core.Domain.Interfaces;
 
 namespace Core.Site
 {
@@ -47,20 +41,18 @@ namespace Core.Site
     public void ConfigureServices(IServiceCollection services)
     {
       // Add framework services.
-      services.AddDbContext<ApplicationDbContext>(options =>
+      services.AddDbContext<IdentityContext>(options =>
           options.UseSqlServer(Configuration.GetConnectionString("LocalConnection")));
 
       services.AddIdentity<ApplicationUser, IdentityRole>()
-          .AddEntityFrameworkStores<ApplicationDbContext>()
+          .AddEntityFrameworkStores<IdentityContext>()
           .AddDefaultTokenProviders();
 
       services.AddMvc();
       services.AddAutoMapper();
 
       // Add application services.
-      services.AddTransient<IEmailSender, AuthMessageSender>();
-      services.AddTransient<ISmsSender, AuthMessageSender>();
-      services.AddScoped<IUser, AspNetUser>();
+     
 
       RegisterServices(services);
     }
@@ -77,7 +69,6 @@ namespace Core.Site
       if (env.IsDevelopment())
       {
         app.UseDeveloperExceptionPage();
-        app.UseDatabaseErrorPage();
         app.UseBrowserLink();
       }
       else

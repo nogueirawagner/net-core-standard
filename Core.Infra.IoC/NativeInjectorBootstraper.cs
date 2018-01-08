@@ -17,6 +17,8 @@ using Core.Domain.Organizadores.Commands;
 using Core.Domain.Organizadores.Events;
 using Core.Domain.Organizadores.Repository;
 using Microsoft.AspNetCore.Http;
+using Core.Infra.Identity.Services;
+using Core.Infra.Identity.Models;
 
 namespace Core.Infra.IoC
 {
@@ -26,6 +28,9 @@ namespace Core.Infra.IoC
     {
       // AspNet 
       services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+      services.AddTransient<IEmailSender, AuthMessageSender>();
+      services.AddTransient<ISmsSender, AuthMessageSender>();
+      services.AddScoped<IUser, AspNetUser>();
 
       // Application
       services.AddSingleton(Mapper.Configuration);

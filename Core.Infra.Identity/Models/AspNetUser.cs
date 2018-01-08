@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 
-namespace Core.Site.Models
+namespace Core.Infra.Identity.Models
 {
   public class AspNetUser : IUser
   {

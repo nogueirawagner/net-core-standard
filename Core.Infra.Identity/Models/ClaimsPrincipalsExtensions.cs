@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
-namespace Core.Site.Models
+namespace Core.Infra.Identity.Models
 {
   public static class ClaimsPrincipalsExtensions
   {
