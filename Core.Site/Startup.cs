@@ -53,9 +53,6 @@ namespace Core.Site
       services.AddAutoMapper();
       services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme);
 
-      // Add application services.
-
-
       RegisterServices(services);
     }
 

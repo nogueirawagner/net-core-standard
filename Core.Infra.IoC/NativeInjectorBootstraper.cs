@@ -26,12 +26,6 @@ namespace Core.Infra.IoC
   {
     public static void RegisterServices(IServiceCollection services)
     {
-      // AspNet 
-      services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-      services.AddTransient<IEmailSender, AuthMessageSender>();
-      services.AddTransient<ISmsSender, AuthMessageSender>();
-      services.AddScoped<IUser, AspNetUser>();
-
       // Application
       services.AddSingleton(Mapper.Configuration);
       services.AddScoped<IMapper>(s => new Mapper(s.GetRequiredService<IConfigurationProvider>(), s.GetServices));
@@ -62,7 +56,11 @@ namespace Core.Infra.IoC
       services.AddScoped<CoreContext>();
       services.AddScoped<IBus, InMemoryBus>();
 
-      // 
+      // Infra - Identity
+      services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+      services.AddTransient<IEmailSender, AuthMessageSender>();
+      services.AddTransient<ISmsSender, AuthMessageSender>();
+      services.AddScoped<IUser, AspNetUser>();
     }
   }
 }
