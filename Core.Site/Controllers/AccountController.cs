@@ -1,21 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using Core.Application.Interfaces;
+using Core.Application.ViewModels;
+using Core.Domain.Core.Bus;
+using Core.Domain.Core.Notifications;
+using Core.Domain.Interfaces;
+using Core.Infra.Identity.Models;
+using Core.Infra.Identity.Models.AccountViewModels;
+using Core.Infra.Identity.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Core.Site.Models;
-using Core.Site.Models.AccountViewModels;
-using Core.Site.Services;
-using Core.Domain.Core.Notifications;
-using Core.Application.Interfaces;
-using Core.Application.ViewModels;
-using Core.Domain.Interfaces;
+using System;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace Core.Site.Controllers
 {
@@ -27,29 +28,26 @@ namespace Core.Site.Controllers
     private readonly IEmailSender _emailSender;
     private readonly ISmsSender _smsSender;
     private readonly ILogger _logger;
-    private readonly string _externalCookieScheme;
     private readonly IDomainNotificationHandler<DomainNotification> _notifications;
     private readonly IOrganizadorServices _organizadorServices;
-
 
     public AccountController(
         UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager,
-        IOptions<IdentityCookieOptions> identityCookieOptions,
         IEmailSender emailSender,
         ISmsSender smsSender,
         ILoggerFactory loggerFactory,
         IDomainNotificationHandler<DomainNotification> notifications,
         IOrganizadorServices organizadorServices,
-        IUser user
+        IUser user,
+        IBus bus
         )
-      :base(notifications, user)
+      :base(notifications, user, bus)
     {
       _organizadorServices = organizadorServices;
       _notifications = notifications;
       _userManager = userManager;
       _signInManager = signInManager;
-      _externalCookieScheme = identityCookieOptions.Value.ExternalCookieAuthenticationScheme;
       _emailSender = emailSender;
       _smsSender = smsSender;
       _logger = loggerFactory.CreateLogger<AccountController>();
@@ -62,7 +60,7 @@ namespace Core.Site.Controllers
     public async Task<IActionResult> Login(string returnUrl = null)
     {
       // Clear the existing external cookie to ensure a clean login process
-      await HttpContext.Authentication.SignOutAsync(_externalCookieScheme);
+      await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
       ViewData["ReturnUrl"] = returnUrl;
       return View();
@@ -142,6 +140,7 @@ namespace Core.Site.Controllers
           if(!OperacaoValida())
           {
             await _userManager.DeleteAsync(user);
+            NotificarErroModelInvalida();
             return View(model);
           }
 

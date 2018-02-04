@@ -1,16 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Core.Application.ViewModels;
-using Core.Site.Data;
 using Core.Application.Interfaces;
+using Core.Application.ViewModels;
+using Core.Domain.Core.Bus;
 using Core.Domain.Core.Notifications;
 using Core.Domain.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Core.Site.Controllers
 {
@@ -21,8 +16,9 @@ namespace Core.Site.Controllers
 
     public EventosController(IEventoServices eventoServices,
                              IDomainNotificationHandler<DomainNotification> notifications,
-                             IUser user)
-      :base(notifications, user)
+                             IUser user,
+                             IBus bus)
+      :base(notifications, user, bus)
     {
       _eventoServices = eventoServices;
     }

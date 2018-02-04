@@ -1,4 +1,4 @@
-@model Core.Application.ViewModels.EventoViewModel
+﻿@model Core.Application.ViewModels.EventoViewModel
 @using Core.Application.ViewModels
 
 @{
@@ -77,7 +77,7 @@
         <div class="form-group">
             <label asp-for="Valor" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input data-val-number="O valor est� em formato inv�lido" asp-for="Valor" class="form-control" />
+                <input data-val-number="O valor está em formato inválido" asp-for="Valor" class="form-control" />
                 <span asp-validation-for="Valor" class="text-danger"></span>
             </div>
         </div>
@@ -96,6 +96,46 @@
             <div class="col-md-10">
                 <input asp-for="NomeEmpresa" class="form-control" />
                 <span asp-validation-for="NomeEmpresa" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div id="EnderecoForm">
+            <br />
+            <h3>Endereço do Evento</h3>
+            <div class="form-group">
+                <label asp-for="Endereco.Logradouro" class="control-label"></label>
+                <input asp-for="Endereco.Logradouro" class="form-control" />
+                <span asp-validation-for="Endereco.Logradouro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Endereco.Numero" class="control-label"></label>
+                <input asp-for="Endereco.Numero" class="form-control" />
+                <span asp-validation-for="Endereco.Numero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Endereco.Complemento" class="control-label"></label>
+                <input asp-for="Endereco.Complemento" class="form-control" />
+                <span asp-validation-for="Endereco.Complemento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Endereco.Bairro" class="control-label"></label>
+                <input asp-for="Endereco.Bairro" class="form-control" />
+                <span asp-validation-for="Endereco.Bairro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Endereco.CEP" class="control-label"></label>
+                <input asp-for="Endereco.CEP" class="form-control" />
+                <span asp-validation-for="Endereco.CEP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Endereco.Cidade" class="control-label"></label>
+                <input asp-for="Endereco.Cidade" class="form-control" />
+                <span asp-validation-for="Endereco.Cidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Endereco.Estado" class="control-label"></label>
+                <input asp-for="Endereco.Estado" class="form-control" />
+                <span asp-validation-for="Endereco.Estado" class="text-danger"></span>
             </div>
         </div>
 
@@ -124,27 +164,9 @@
       {
           var notificacao = ViewBag.Retorno.ToString().Split(',');
 
-        <script>
-            toastr.options = {
-                "closeButton": false,
-                "debug": false,
-                "newestOnTop": false,
-                "progressBar": false,
-                "positionClass": "toast-top-right",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "5000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-            }
+       <script>
             toastr["@notificacao[0]"]("@notificacao[1]");
         </script>
-
       }
     }
 }
