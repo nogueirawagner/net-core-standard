@@ -8,7 +8,7 @@
 <form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
     <h4>Create a new account.</h4>
     <hr />
-    <div asp-validation-summary="All" class="text-danger"></div>
+    <vc:summary />
 
     <div class="form-group">
         <label asp-for="Nome" class="col-md-2 control-label"></label>
@@ -53,6 +53,22 @@
     </div>
 </form>
 
+
 @section Scripts {
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        ValidacoesEvento();
+    </script>
+
+    @{
+      if (ViewBag.Retorno != null)
+      {
+          var notificacao = ViewBag.Retorno.ToString().Split(',');
+
+        <script>
+            toastr["@notificacao[0]"]("@notificacao[1]");
+        </script>
+      }
+    }
 }

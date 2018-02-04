@@ -1,5 +1,6 @@
 using Core.Application.Interfaces;
 using Core.Application.ViewModels;
+using Core.Domain.Core.Bus;
 using Core.Domain.Core.Notifications;
 using Core.Domain.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -15,8 +16,9 @@ namespace Core.Site.Controllers
 
     public EventosController(IEventoServices eventoServices,
                              IDomainNotificationHandler<DomainNotification> notifications,
-                             IUser user)
-      :base(notifications, user)
+                             IUser user,
+                             IBus bus)
+      :base(notifications, user, bus)
     {
       _eventoServices = eventoServices;
     }

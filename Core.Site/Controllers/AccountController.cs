@@ -1,5 +1,6 @@
 ﻿using Core.Application.Interfaces;
 using Core.Application.ViewModels;
+using Core.Domain.Core.Bus;
 using Core.Domain.Core.Notifications;
 using Core.Domain.Interfaces;
 using Core.Infra.Identity.Models;
@@ -30,7 +31,6 @@ namespace Core.Site.Controllers
     private readonly IDomainNotificationHandler<DomainNotification> _notifications;
     private readonly IOrganizadorServices _organizadorServices;
 
-
     public AccountController(
         UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager,
@@ -39,9 +39,10 @@ namespace Core.Site.Controllers
         ILoggerFactory loggerFactory,
         IDomainNotificationHandler<DomainNotification> notifications,
         IOrganizadorServices organizadorServices,
-        IUser user
+        IUser user,
+        IBus bus
         )
-      :base(notifications, user)
+      :base(notifications, user, bus)
     {
       _organizadorServices = organizadorServices;
       _notifications = notifications;
@@ -139,6 +140,7 @@ namespace Core.Site.Controllers
           if(!OperacaoValida())
           {
             await _userManager.DeleteAsync(user);
+            NotificarErroModelInvalida();
             return View(model);
           }
 
