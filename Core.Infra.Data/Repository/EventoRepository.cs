@@ -21,7 +21,7 @@ namespace Core.Infra.Data.Repository
     {
       var sql =
         @"SELECT * FROM Eventos ev
-          LEFT JOIN Enderecos e ON ev.ID = e.ID
+          LEFT JOIN Enderecos e ON ev.ID = e.EventoId
           WHERE ev.ID = @pId";
 
       var evento = Connection.Query<Evento, Endereco, Evento>(sql,

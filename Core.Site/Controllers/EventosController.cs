@@ -18,7 +18,7 @@ namespace Core.Site.Controllers
                              IDomainNotificationHandler<DomainNotification> notifications,
                              IUser user,
                              IBus bus)
-      :base(notifications, user, bus)
+      : base(notifications, user, bus)
     {
       _eventoServices = eventoServices;
     }
@@ -58,7 +58,7 @@ namespace Core.Site.Controllers
       eventoViewModel.OrganizadorId = OrganizadorId;
       _eventoServices.Registrar(eventoViewModel);
 
-      ViewBag.Retorno = OperacaoValida() ? "success, Evento registrado com sucesso" 
+      ViewBag.Retorno = OperacaoValida() ? "success, Evento registrado com sucesso"
                                          : "error, Ocorreu algum problema verifique as mensagens";
       return View(eventoViewModel);
     }
@@ -117,6 +117,17 @@ namespace Core.Site.Controllers
                                          : "error, Ocorreu algum problema verifique as mensagens";
 
       return RedirectToAction("Index");
+    }
+
+    public IActionResult IncluirEndereco(Guid? id)
+    {
+      if (id == null)
+      {
+        return NotFound();
+      }
+
+      var eventoViewModel = _eventoServices.ObterPorId(id.Value);
+      return PartialView("_IncluirEndereco", eventoViewModel);
     }
   }
 }

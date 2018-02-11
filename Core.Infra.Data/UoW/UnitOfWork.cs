@@ -1,4 +1,4 @@
-﻿using Core.Domain.Core.Commands;
+﻿  using Core.Domain.Core.Commands;
 using Core.Infra.Data.Context;
 using Core.Domain.Interfaces;
 

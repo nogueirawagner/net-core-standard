@@ -18,29 +18,7 @@ namespace Core.Infra.Identity.Models.AccountViewModels
     [Display(Name = "Senha")]
     public string Password { get; set; }
 
-    [HiddenInput(DisplayValue = false)]
+    [Display(Name = "Relembrar")]
     public bool RememberMe { get; set; }
-
-
-
-    public KeyValuePair<int, int> MostPopularNumber(int[] numeros)
-    {
-      var max = (numeros.GroupBy(x => x)
-      .Select(x => new { num = x, cnt = x.Count() })
-      .OrderByDescending(g => g.cnt)
-      .Select(g => g.num).First());
-
-      return new KeyValuePair<int, int>(max.Key, max.Count());
-    }
-
-
-
-
   }
-
-
-
-
-
-
 }

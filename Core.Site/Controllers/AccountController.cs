@@ -95,7 +95,7 @@ namespace Core.Site.Controllers
         }
         else
         {
-          ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+          ModelState.AddModelError(string.Empty, "Email ou senha inválidos.");
           return View(model);
         }
       }
