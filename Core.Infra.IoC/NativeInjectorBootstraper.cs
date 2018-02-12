@@ -36,12 +36,16 @@ namespace Core.Infra.IoC
       services.AddScoped<IHandler<RegistrarEventoCommand>, EventoCommandHandler>();
       services.AddScoped<IHandler<AtualizarEventoCommand>, EventoCommandHandler>();
       services.AddScoped<IHandler<ExcluirEventoCommand>, EventoCommandHandler>();
+      services.AddScoped<IHandler<AtualizarEnderecoCommand>, EventoCommandHandler>();
+      services.AddScoped<IHandler<IncluirEnderecoCommand>, EventoCommandHandler>();
       services.AddScoped<IHandler<RegistrarOrganizadorCommand>, OrganizadorCommandHandler>();
 
       // Domain - Events
       services.AddScoped<IHandler<EventoRegistradoEvent>, EventoEventHandler>();
       services.AddScoped<IHandler<EventoAtualizadoEvent>, EventoEventHandler>();
       services.AddScoped<IHandler<EventoExcluidoEvent>, EventoEventHandler>();
+      services.AddScoped<IHandler<EnderecoAdicionadoEvent>, EventoEventHandler>();
+      services.AddScoped<IHandler<EnderecoAtualizadoEvent>, EventoEventHandler>();
       services.AddScoped<IHandler<OrganizadorRegistradoEvent>, OrganizadorEventHandler>();
 
       // Domain - Notifications

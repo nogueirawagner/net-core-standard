@@ -60,5 +60,22 @@ namespace Core.Application.Services
     {
       _eventoRepository.Dispose();
     }
+
+    public void AdicionarEndereco(EnderecoViewModel enderecoViewModel)
+    {
+      var enderecoCommand = _mapper.Map<IncluirEnderecoCommand>(enderecoViewModel);
+      _bus.SendCommand(enderecoCommand);
+    }
+
+    public void AtualizarEndereco(EnderecoViewModel enderecoViewModel)
+    {
+      var enderecoCommand = _mapper.Map<AtualizarEnderecoCommand>(enderecoViewModel);
+      _bus.SendCommand(enderecoCommand);
+    }
+
+    public EnderecoViewModel ObterEnderecoPorId(Guid id)
+    {
+      return _mapper.Map<EnderecoViewModel>(_eventoRepository.ObterEnderecoPorId(id));
+    }
   }
 }

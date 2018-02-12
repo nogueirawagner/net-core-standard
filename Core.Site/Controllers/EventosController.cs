@@ -129,5 +129,57 @@ namespace Core.Site.Controllers
       var eventoViewModel = _eventoServices.ObterPorId(id.Value);
       return PartialView("_IncluirEndereco", eventoViewModel);
     }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult IncluirEndereco(EventoViewModel eventoViewModel)
+    {
+      ModelState.Clear();
+      eventoViewModel.Endereco.EventoId = eventoViewModel.Id;
+      _eventoServices.AdicionarEndereco(eventoViewModel.Endereco);
+
+      if (OperacaoValida())
+      {
+        string url = Url.Action("ObterEndereco", "Eventos", new { id = eventoViewModel.Id});
+        return Json(new { success = true, data = url});
+      }
+
+      return PartialView("_IncluirEndereco", eventoViewModel);
+    }
+
+    public IActionResult AtualizarEndereco(Guid? id)
+    {
+      if (id == null)
+      {
+        return NotFound();
+      }
+
+      var eventoViewModel = _eventoServices.ObterPorId(id.Value);
+      return PartialView("_IncluirEndereco", eventoViewModel);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult AtualizarEndereco(EventoViewModel eventoViewModel)
+    {
+      ModelState.Clear();
+      eventoViewModel.Endereco.EventoId = eventoViewModel.Id;
+      _eventoServices.AtualizarEndereco(eventoViewModel.Endereco);
+
+      if (OperacaoValida())
+      {
+        string url = Url.Action("ObterEndereco", "Eventos", new { id = eventoViewModel.Id });
+        return Json(new { success = true, data = url });
+      }
+
+      return PartialView("_AtualizarEndereco", eventoViewModel);
+    }
+
+
+    public IActionResult ObterEndereco(Guid id)
+    {
+      return PartialView("_DetalhesEndereco");
+    }
+
   }
 }
