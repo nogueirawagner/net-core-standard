@@ -3,8 +3,6 @@ using Core.Application.ViewModels;
 using Core.Domain.Eventos.Commands;
 using Core.Domain.Organizadores.Commands;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Core.Application.AutoMapper
 {

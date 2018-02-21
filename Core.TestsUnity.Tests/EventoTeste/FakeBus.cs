@@ -29,18 +29,18 @@ namespace Core.TestsUnity.Tests.EventoTeste
     {
       var msgType = message.MessageType;
 
-      if(msgType.Equals("DomainNotification"))
+      if (msgType.Equals("DomainNotification"))
       {
         var obj = new DomainNotificationHandler();
         ((IDomainNotificationHandler<T>)obj).Handle(message);
       }
 
-      if(msgType.Equals("RegistrarEventoCommand") 
-        || msgType.Equals("AtualizarEventoCommand") 
+      if (msgType.Equals("RegistrarEventoCommand")
+        || msgType.Equals("AtualizarEventoCommand")
         || msgType.Equals("ExcluirEventoCommand"))
       {
-        var obj = new EventoCommandHandler(new FakeEventoRepository(), new FakeUOW(), new FakeBus(), new DomainNotificationHandler());
-        ((IHandler<T>)obj).Handle(message);
+        //var obj = new EventoCommandHandler(new FakeEventoRepository(), new FakeUOW(), new FakeBus(), new DomainNotificationHandler());
+        //((IHandler<T>)obj).Handle(message);
       }
 
       if (msgType.Equals("EventoRegistradoEvent")

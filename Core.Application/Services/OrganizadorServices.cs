@@ -1,12 +1,9 @@
-﻿using Core.Application.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using AutoMapper;
+using Core.Application.Interfaces;
 using Core.Application.ViewModels;
 using Core.Domain.Core.Bus;
-using AutoMapper;
-using Core.Domain.Organizadores.Repository;
 using Core.Domain.Organizadores.Commands;
+using Core.Domain.Organizadores.Repository;
 
 namespace Core.Application.Services
 {

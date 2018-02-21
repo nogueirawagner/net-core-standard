@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using Core.Domain.Interfaces;
 using Core.Infra.Bus;
 using Core.Infra.Identity.Data;
 using Core.Infra.Identity.Models;
-using Core.Infra.Identity.Services;
 using Core.Infra.IoC;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
